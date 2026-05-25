@@ -1,0 +1,18 @@
+.patient-loading {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+
+  &__tilte {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      text-align: center;
+  }
+}

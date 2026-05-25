@@ -1,0 +1,500 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Accidente</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+               <!-- app.component.html -->
+ 
+                    <form [formGroup]="medicalEventForm">
+                    <h3>Información del empleado</h3>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Paciente</mat-label>
+                            <app-c-async-select formControlName="patient" methodService="patients"
+                                bindLabel="first_name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="patient"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de centro de costo</mat-label>
+                            <app-c-async-select formControlName="cost_center_type" methodService="typeCostCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="cost_center_type"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de costo</mat-label>
+                            <app-c-async-select formControlName="cost_center" methodService="costCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="cost_center"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de costo del paciente</mat-label>
+                            <app-c-async-select formControlName="patient_cost_center" methodService="costCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="patient_cost_center"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Área de trabajo del paciente</mat-label>
+                            <app-c-async-select formControlName="patient_cost_center_area" methodService="areaCostCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="patient_cost_center_area"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Turno</mat-label>
+                            <app-c-async-select formControlName="turn" methodService="turn"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="turn"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre del supervisor</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="supervisor_name" placeholder="">
+                        </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Departamento de trabajo</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                          
+                            <input matInput formControlName="work_department" placeholder="">
+                        </mat-form-field>
+                        </div>
+                   
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Espacio de trabajo</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                          
+                            <input matInput formControlName="work_space" placeholder="">
+                        </mat-form-field>
+                        </div>
+                  
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Antigüedad en la empresa</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="seniority_company">
+                        </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Antigüedad en el departamento</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            
+                            <input matInput formControlName="seniority_department" >
+                        </mat-form-field>
+                        </div>
+                
+                
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Jefe inmediato</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                        <input matInput formControlName="immediate_boss" >
+                        </mat-form-field>
+                    </div>
+                
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Jefe inmediato del departamento</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                        
+                        <input matInput formControlName="immediate_boss_department" >
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Diagnostico</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                        
+                        <input matInput formControlName="diagnosis" >
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tratamiento</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                        
+                        <input matInput formControlName="treatment" >
+                        </mat-form-field>
+                    </div>
+                
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Dirección</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            
+                            <input matInput formControlName="address">
+                        </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="phone" >
+                        </mat-form-field>
+                        </div>
+                    </div>
+                
+                    <h3>Detalles del accidente</h3>
+                
+                    <div class="row" formGroupName="medical_event" >
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Àrea del centro de coste</mat-label>
+                            <app-c-async-select formControlName="event_cost_center_area" methodService="areaCostCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="event_cost_center_area"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de suspensión</mat-label>
+                            
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="suspension_at" matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                           
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de reporte</mat-label>
+                            
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="event_report_at" matInput [matDatepicker]="picker2">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                           
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Quien reportó?</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="reported_to_name">
+                        </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Cargo de quien reportó</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="reported_to_position" >
+                        </mat-form-field>
+                        </div>
+                  
+                
+                    <!-- Medical Event -->
+                   
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Actividad que realizaba</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                          
+                            <input matInput formControlName="activity_being_performed">
+                        </mat-form-field>
+                        </div>
+                 
+                
+                    <!-- Medical Event Witnesses -->
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Último fecha de descanso</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input formControlName="last_day_rest" matInput [matDatepicker]="picker3">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tiempo extra</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="extra_time">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Actividades fuera del trabajo</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="activities_outside_work">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Trabajo regular</mat-label>
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                            <mat-radio-group formControlName="regular_job" aria-label="Selecciona una opción">
+                                <mat-radio-button  value=0>Si</mat-radio-button>
+                                <mat-radio-button  value=1>No</mat-radio-button>
+                              </mat-radio-group>
+                              
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div class="col-sm-12 col-md-4" *ngIf="medicalEventForm.get('medical_event.regular_job')?.value==0">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Detalle del trabajo regular</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="regular_job_detail">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Equipamiento de protección personal</mat-label>
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                            <mat-radio-group formControlName="personal_protection_equipment" aria-label="Selecciona una opción">
+                                <mat-radio-button  value=0>Si</mat-radio-button>
+                                <mat-radio-button  value=1>No</mat-radio-button>
+                              </mat-radio-group>
+                              
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div class="col-sm-12 col-md-4" *ngIf="medicalEventForm.get('medical_event.personal_protection_equipment')?.value==0">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Detalles del equipamiento de protección</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="personal_protection_equipment_detail">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Lugar donde ocurrió el suceso</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="place_event_occurred">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Riesgo</mat-label>
+                        <app-c-async-select formControlName="risk" methodService="risk"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="risk"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Descripción del riesgo</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="risk_description">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Lugar de cuidado</mat-label>
+                        <app-c-async-select formControlName="care_place" methodService="place"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="care_place"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Cuidado médico</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="medical_care_description">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de tiempo</mat-label>
+                        <app-c-async-select formControlName="time_type" methodService="time"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="time_type"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Material usado</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="used_material">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Costo aproximado</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="approximate_cost">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Evaluación del accidente</mat-label>
+                        <app-c-async-select formControlName="event_evaluation" methodService="evaluationAccident"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="event_evaluation"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Clasificación del riesgo</mat-label>
+                        <app-c-async-select formControlName="risk_classification" methodService="evaluationRisk"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="risk_classification"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Relación causa/efecto</mat-label>
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                            <mat-radio-group formControlName="cause_effect_relationship" aria-label="Selecciona una opción">
+                                <mat-radio-button  value=0>Si</mat-radio-button>
+                                <mat-radio-button  value=1>No</mat-radio-button>
+                              </mat-radio-group>
+                              
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de descripción</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <input formControlName="event_description_at" matInput [matDatepicker]="picker4">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Traumatismo severo</mat-label>
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                            <mat-radio-group formControlName="severe_traumatic_event" aria-label="Selecciona una opción">
+                                <mat-radio-button  value=0>Si</mat-radio-button>
+                                <mat-radio-button  value=1>No</mat-radio-button>
+                              </mat-radio-group>
+                              
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Requiere incapacidad?</mat-label>
+                        <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                            <mat-radio-group formControlName="incapacity_required" aria-label="Selecciona una opción">
+                                <mat-radio-button  value=0>Si</mat-radio-button>
+                                <mat-radio-button  value=1>No</mat-radio-button>
+                              </mat-radio-group>
+                              
+                        <!-- </mat-form-field> -->
+                    </div>
+                    <div class="col-sm-12 col-md-4" *ngIf="medicalEventForm.get('medical_event.incapacity_required')?.value==0">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Días de incapacidad</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="incapacity_days">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Causa</mat-label>
+                        <app-c-async-select formControlName="cause" methodService="cause"
+                            bindLabel="description" bindValue="id">
+                        </app-c-async-select>
+                        <mat-error errorSpan controlName="cause"></mat-error>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Descripción del evento</mat-label>
+                        <mat-form-field appearance="outline" class="w-100">
+                       
+                            <input matInput formControlName="event_description">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="injury_types">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de lesiones</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of injuryInForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <app-c-async-select formControlName="injury_type_id" methodService="injuryType"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="description" placeholder="Descripción" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeInjuryByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addInjury()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="affected_parts">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Partes afectadas</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of affectPartsInForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <app-c-async-select formControlName="body_part_detail_id" methodService="affectParts"
+                                        bindLabel="name" bindValue="id">
+                                    </app-c-async-select>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="description" placeholder="Descripción" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeAffectPartsByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addAffectParts()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+
+
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="medical_event_witnesses">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Testigos</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of witenessesInForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="name" placeholder="Nombre del testigo" />
+                                          </mat-form-field>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="description" placeholder="Descripción" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeWitenessesByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addWitenesses()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+                </div>
+                    <!-- Files -->
+                    <div class="col-sm-12 col-md-4">
+                        <app-dropzone
+                        [deleteOnlyLocal]="true"
+                        class="w-100"
+                        formControlName="files"></app-dropzone>
+                    </div>
+                
+                    <button mat-raised-button color="primary" (click)="save()" >Guardar</button>
+                    </form>
+      
+  
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

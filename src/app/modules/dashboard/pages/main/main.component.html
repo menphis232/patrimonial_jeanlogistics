@@ -1,0 +1,250 @@
+<div class="row">
+  <div class="col-md-12">
+
+
+    <form [formGroup]="formFilter" class="flex gap-4 items-center">
+      <div class="row align-items-end">
+        <div class="col-sm-12 col-md-4">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha Desde</mat-label>
+          
+          <mat-form-field appearance="outline" class="w-100">
+              <input formControlName="since" matInput [matDatepicker]="since">
+              <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+              <mat-datepicker-toggle matIconSuffix [for]="since"></mat-datepicker-toggle>
+              <mat-datepicker #since></mat-datepicker>
+          </mat-form-field>
+         
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha hasta</mat-label>
+        
+        <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="until" matInput [matDatepicker]="until">
+            <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
+            <mat-datepicker-toggle matIconSuffix [for]="until"></mat-datepicker-toggle>
+            <mat-datepicker #until></mat-datepicker>
+        </mat-form-field>
+       
+    </div>
+    <div class="col-sm-12 col-md-4 alin">
+      <div class="pt-4">
+        <button class="inline-flex" mat-flat-button color="primary" (click)="refresh()" [disabled]="formFilter.invalid">
+          <span>Aplicar</span>
+        </button>
+      </div>
+    </div>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="col-md-12">
+    <ng-container >
+      <div
+          class="table-loading-records">
+        <i-tabler name="search" class="icon-40"></i-tabler> 
+          <div class="table-loading-records__title">Cargando gráficos...
+          </div>
+      </div>
+  </ng-container>
+  </div> -->
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card"*ngIf="chartOptionsperArea">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Incidencias por centro de trabajo</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1" >
+
+
+          <apx-chart
+          
+          [series]="chartOptionsperArea?.series"
+          [chart]="chartOptionsperArea.chart"
+          [xaxis]="chartOptionsperArea.xaxis"
+          [yaxis]="chartOptionsperArea.yaxis"
+          [grid]="chartOptionsperArea.grid"
+          [stroke]="chartOptionsperArea.stroke"
+          [tooltip]="chartOptionsperArea.tooltip"
+          [plotOptions]="chartOptionsperArea.plotOptions"
+          [dataLabels]="chartOptionsperArea.dataLabels"
+          [legend]="chartOptionsperArea.legend"
+          [colors]="chartOptionsperArea.colors"
+          [markers]="chartOptionsperArea.markers"
+        >
+        </apx-chart>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <!-- <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsperConsultMedicalperArea">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Valor de riesgo (5 siendo el peor y 1 el mejor)</mat-card-title>
+
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+       
+        [series]="chartOptionsperConsultMedicalperArea?.series"
+        [chart]="chartOptionsperConsultMedicalperArea.chart"
+        [xaxis]="chartOptionsperConsultMedicalperArea.xaxis"
+        [yaxis]="chartOptionsperConsultMedicalperArea.yaxis"
+        [grid]="chartOptionsperConsultMedicalperArea.grid"
+        [stroke]="chartOptionsperConsultMedicalperArea.stroke"
+        [tooltip]="chartOptionsperConsultMedicalperArea.tooltip"
+        [plotOptions]="chartOptionsperConsultMedicalperArea.plotOptions"
+        [dataLabels]="chartOptionsperConsultMedicalperArea.dataLabels"
+        [legend]="chartOptionsperConsultMedicalperArea.legend"
+        [colors]="chartOptionsperConsultMedicalperArea.colors"
+        [markers]="chartOptionsperConsultMedicalperArea.markers"
+      >
+      </apx-chart>
+    </mat-card-content>
+    </mat-card>
+  </div> -->
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsperReasonConsult">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Pérdidas por tipo de incidencia</mat-card-title>
+        
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+       
+        [series]="chartOptionsperReasonConsult?.series"
+        [chart]="chartOptionsperReasonConsult.chart"
+        [xaxis]="chartOptionsperReasonConsult.xaxis"
+        [yaxis]="chartOptionsperReasonConsult.yaxis"
+        [grid]="chartOptionsperReasonConsult.grid"
+        [stroke]="chartOptionsperReasonConsult.stroke"
+        [tooltip]="chartOptionsperReasonConsult.tooltip"
+        [plotOptions]="chartOptionsperReasonConsult.plotOptions"
+        [dataLabels]="chartOptionsperReasonConsult.dataLabels"
+        [legend]="chartOptionsperReasonConsult.legend"
+        [colors]="chartOptionsperReasonConsult.colors"
+        [markers]="chartOptionsperReasonConsult.markers"
+      >
+      </apx-chart>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsperIncidentPerArea">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Incidencias por locación</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+          [series]="chartOptionsperIncidentPerArea?.series"
+          [chart]="chartOptionsperIncidentPerArea.chart"
+          [xaxis]="chartOptionsperIncidentPerArea.xaxis"
+          [yaxis]="chartOptionsperIncidentPerArea.yaxis"
+          [grid]="chartOptionsperIncidentPerArea.grid"
+          [stroke]="chartOptionsperIncidentPerArea.stroke"
+          [tooltip]="chartOptionsperIncidentPerArea.tooltip"
+          [plotOptions]="chartOptionsperIncidentPerArea.plotOptions"
+          [dataLabels]="chartOptionsperIncidentPerArea.dataLabels"
+          [legend]="chartOptionsperIncidentPerArea.legend"
+          [colors]="chartOptionsperIncidentPerArea.colors"
+          [markers]="chartOptionsperIncidentPerArea.markers"
+        >
+        </apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsVulnerabilityEvaluation">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Evaluación de Vulnerabilidad</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+          [series]="chartOptionsVulnerabilityEvaluation?.series"
+          [chart]="chartOptionsVulnerabilityEvaluation.chart"
+          [xaxis]="chartOptionsVulnerabilityEvaluation.xaxis"
+          [yaxis]="chartOptionsVulnerabilityEvaluation.yaxis"
+          [grid]="chartOptionsVulnerabilityEvaluation.grid"
+          [stroke]="chartOptionsVulnerabilityEvaluation.stroke"
+          [tooltip]="chartOptionsVulnerabilityEvaluation.tooltip"
+          [plotOptions]="chartOptionsVulnerabilityEvaluation.plotOptions"
+          [dataLabels]="chartOptionsVulnerabilityEvaluation.dataLabels"
+          [legend]="chartOptionsVulnerabilityEvaluation.legend"
+          [colors]="chartOptionsVulnerabilityEvaluation.colors"
+          [markers]="chartOptionsVulnerabilityEvaluation.markers"
+        >
+        </apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsperTypeIncapacities">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Tipos de incapacidades</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+       
+        [series]="chartOptionsperTypeIncapacities?.series"
+        [chart]="chartOptionsperTypeIncapacities.chart"
+        [xaxis]="chartOptionsperTypeIncapacities.xaxis"
+        [yaxis]="chartOptionsperTypeIncapacities.yaxis"
+        [grid]="chartOptionsperTypeIncapacities.grid"
+        [stroke]="chartOptionsperTypeIncapacities.stroke"
+        [tooltip]="chartOptionsperTypeIncapacities.tooltip"
+        [plotOptions]="chartOptionsperTypeIncapacities.plotOptions"
+        [dataLabels]="chartOptionsperTypeIncapacities.dataLabels"
+        [legend]="chartOptionsperTypeIncapacities.legend"
+        [colors]="chartOptionsperTypeIncapacities.colors"
+        [markers]="chartOptionsperTypeIncapacities.markers"
+      >
+      </apx-chart>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsperIncapacitiesperYear">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Incapacidades por año</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+       
+        [series]="chartOptionsperIncapacitiesperYear?.series"
+        [chart]="chartOptionsperIncapacitiesperYear.chart"
+        [xaxis]="chartOptionsperIncapacitiesperYear.xaxis"
+        [yaxis]="chartOptionsperIncapacitiesperYear.yaxis"
+        [grid]="chartOptionsperIncapacitiesperYear.grid"
+        [stroke]="chartOptionsperIncapacitiesperYear.stroke"
+        [tooltip]="chartOptionsperIncapacitiesperYear.tooltip"
+        [plotOptions]="chartOptionsperIncapacitiesperYear.plotOptions"
+        [dataLabels]="chartOptionsperIncapacitiesperYear.dataLabels"
+        [legend]="chartOptionsperIncapacitiesperYear.legend"
+        [colors]="chartOptionsperIncapacitiesperYear.colors"
+        [markers]="chartOptionsperIncapacitiesperYear.markers"
+      >
+      </apx-chart>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="col-lg-6">
+    <mat-card class="cardWithShadow theme-card" *ngIf="chartOptionsVulnerabilityPoints">
+      <mat-card-header>
+        <mat-card-title class="m-b-0">Puntos de Vulnerabilidad</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="b-t-1">
+        <apx-chart
+          [series]="chartOptionsVulnerabilityPoints?.series"
+          [chart]="chartOptionsVulnerabilityPoints.chart"
+          [xaxis]="chartOptionsVulnerabilityPoints.xaxis"
+          [yaxis]="chartOptionsVulnerabilityPoints.yaxis"
+          [grid]="chartOptionsVulnerabilityPoints.grid"
+          [stroke]="chartOptionsVulnerabilityPoints.stroke"
+          [tooltip]="chartOptionsVulnerabilityPoints.tooltip"
+          [plotOptions]="chartOptionsVulnerabilityPoints.plotOptions"
+          [dataLabels]="chartOptionsVulnerabilityPoints.dataLabels"
+          [legend]="chartOptionsVulnerabilityPoints.legend"
+          [colors]="chartOptionsVulnerabilityPoints.colors"
+          [markers]="chartOptionsVulnerabilityPoints.markers"
+        >
+        </apx-chart>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

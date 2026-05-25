@@ -1,0 +1,43 @@
+import { NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { CoreService } from 'src/app/core/services/core.service';
+
+
+@Component({
+  selector: 'app-branding',
+  standalone: true,
+  imports: [NgIf],
+  template: `
+    <div class="branding">
+      @if(options.theme === 'light') {
+      <a href="/">
+        <img
+          src="./assets/images/logos/logo.png"
+<<<<<<< HEAD
+          class="align-middle m-2 aline"
+          style="    width: 20%;"
+=======
+          class="align-middle m-2"
+          style="    width: 9%;"
+>>>>>>> 6a33427 (fix)
+          alt="logo"
+        />
+      </a>
+      } @if(options.theme === 'dark') {
+      <a href="/">
+        <img
+          src="./assets/images/logos/logo.png"
+          class="align-middle m-2"
+           style="    width: 9%;"
+          alt="logo"
+        />
+      </a>
+      }
+    </div>
+  `,
+})
+export class BrandingComponent {
+  options = this.settings.getOptions();
+
+  constructor(private settings: CoreService) {}
+}

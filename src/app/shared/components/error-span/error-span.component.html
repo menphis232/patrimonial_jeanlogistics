@@ -1,0 +1,40 @@
+<ng-container *ngIf="control && control?.invalid && control?.touched">
+
+    <span *ngIf="control.hasError('required')">
+        Este campo es requerido
+    </span>
+
+    <span *ngIf="control.hasError('pattern')">
+        ...
+    </span>
+
+    <span *ngIf="control.hasError('minlength')">
+        El campo debe contener un mínimo de {{ control?.errors?.['minlength']?.requiredLength }} carácteres
+    </span>
+
+    <span *ngIf="control.hasError('email')">
+        El correo no es una dirección válida
+    </span>
+
+    <span *ngIf="control.hasError('numeric')">
+        Este campo debe ser de valor númerico
+    </span>
+  
+    <span *ngIf="control.hasError('passwordMatch')">
+        La contraseña no coincide
+    </span>
+
+    <span *ngIf="control.hasError('matDatepickerMin')">
+        La fecha de inicio ingresada no puede ser menor a {{currentDate}}
+    </span>    
+    
+    <span *ngIf="control.hasError('max')">
+        Se ha excedido la cantidad máxima permitida: {{ control.errors?.['max']?.max }}.
+    </span>
+
+    <span *ngIf="control.hasError('numeric')">
+       Solo se permiten números
+    </span>
+  
+  </ng-container>
+  

@@ -1,0 +1,78 @@
+<div class="modal-container">
+  <h2 class="modal-title" mat-dialog-title>
+    <mat-icon class="title-icon">directions_walk</mat-icon>
+    Detalle del Recorrido de Seguridad
+  </h2>
+
+  <mat-dialog-content>
+    <ng-container *ngIf="patient; else loadingPatient">
+      <div class="tour-details">
+        <!-- Información Principal -->
+        <div class="detail-section">
+          <h3 class="section-title">Información General</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Centro de Trabajo</span>
+              <span class="value highlight">{{patient.farm?.name}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Responsable</span>
+              <span class="value">{{patient.created_by_user?.name}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Fecha</span>
+              <span class="value">{{patient.created_at | date:'dd/MM/yyyy'}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Duración</span>
+              <span class="value duration">{{ convertir(patient.duration)}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Áreas Recorridas -->
+        <div class="detail-section">
+          <h3 class="section-title">Observaciones de Áreas Recorridas</h3>
+          <div class="areas-grid">
+            <div class="area-card" *ngFor="let area of patient.safety_tour_details">
+              <div class="area-header">
+                <mat-icon>location_on</mat-icon>
+                <h4>{{area.area.name}}</h4>
+              </div>
+              
+              <div class="area-content">
+                <p class="observation">
+                  <span class="label">Observación:</span>
+                  {{area.observations}}
+                </p>
+                
+                <div class="map-container">
+                  <iframe 
+                    [src]="sanitizeMapUrl(generateLink(area.lat, area.long))" 
+                    width="100%" 
+                    height="300" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingPatient>
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span class="loading-text">Cargando detalles del recorrido...</span>
+      </div>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button (click)="closeDialog()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

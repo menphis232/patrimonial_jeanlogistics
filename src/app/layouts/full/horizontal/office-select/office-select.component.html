@@ -1,0 +1,47 @@
+<!-- Button -->
+<div class="d-flex gap-6" [ngClass]="classContainer">
+   
+    <button mat-raised-button color="primary" class="" *ngIf="costCenterTypeList && costCenterTypeList.length" [matMenuTriggerFor]="offceMenu">
+        <div class="d-flex align-items-center">
+            <span>{{ typeButtonText }}</span>
+            <i-tabler name="chevron-down" class="icon-18 m-l-4">
+            </i-tabler>
+        </div>
+    </button>
+
+    <button *ngIf="showCostCenterMenu && !isGlobalSelected" mat-raised-button color="primary" class="" [matMenuTriggerFor]="costCenterMenu">
+        <div class="d-flex align-items-center">
+            <span>{{ centerButtonText }}</span>
+            <i-tabler name="chevron-down" class="icon-18 m-l-4">
+            </i-tabler>
+        </div>
+    </button>
+</div>
+
+<!-- Menu Tipos de Centro de Costo -->
+<mat-menu [xPosition]="'before'" #offceMenu="matMenu">
+    <button mat-menu-item (click)="selectGlobalOption()">
+        <span class="flex items-center" [ngClass]="{ 'active': isGlobalSelected }">
+            <span class="ml-3">Global</span>
+        </span>
+    </button>
+    <ng-container *ngFor="let costCenterType of costCenterTypeList; trackBy: trackByFn">
+        <button mat-menu-item
+            (click)="selectOffice({ keyStorage: 'costCenterType', office: costCenterType, reload: false })">
+            <span class="flex items-center" [ngClass]="{ 'active': isCostCenterTypeSelected(costCenterType) && !isGlobalSelected }">
+                <span class="ml-3">{{costCenterType.description}}</span>
+            </span>
+        </button>
+    </ng-container>
+</mat-menu>
+
+<!-- Menu Centros de Costo -->
+<mat-menu [xPosition]="'before'" #costCenterMenu="matMenu" class="max-h-3">
+    <ng-container *ngFor="let costCenter of costCenterList; trackBy: trackByFn">
+        <button mat-menu-item (click)="selectOffice({ keyStorage: 'costCenter', office: costCenter, reload: true })">
+            <span class="flex items-center" [ngClass]="{ 'active': isCostCenterSelected(costCenter) && !isGlobalSelected }">
+                <span class="ml-3">{{costCenter.name}} - {{costCenter.code}}</span>
+            </span>
+        </button>
+    </ng-container>
+</mat-menu>

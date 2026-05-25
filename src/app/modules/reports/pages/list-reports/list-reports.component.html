@@ -1,0 +1,329 @@
+
+
+<mat-card class="cardWithShadow">
+
+    <!--ATENCION MEDICA-->
+
+    <ng-container >
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 ng-star-inserted" >
+                <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+                    <h3 style="text-align: center;">Atención Médica</h3>
+                    <mat-card-content class="mat-mdc-card-content text-center p-24">
+                        
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <form [formGroup]="formFilter" class="flex gap-4 items-center">
+
+                                    <div class="col-sm-12 col-md-12">
+                                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Razón de consulta</mat-label>
+                                        <app-c-async-select formControlName="reason_consultation_id" methodService="reasonConsultation"
+                                            bindLabel="name" bindValue="id">
+                                        </app-c-async-select>
+                                        <mat-error errorSpan controlName="reason_consultation_id"></mat-error>
+                                    </div>
+                                
+                                <div>
+                                    <mat-form-field class="w-full"  appearance="outline" >
+                                        <mat-label>Fecha Desde</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="since"
+                                            [matDatepicker]="since">
+                                        <mat-datepicker-toggle
+                                            matSuffix
+                                            [for]="since"></mat-datepicker-toggle>
+                                        <mat-datepicker #since></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            
+                                <div>
+                                    <mat-form-field class="w-full"  appearance="outline">
+                                        <mat-label>Fecha Hasta</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="until"
+                                            [matDatepicker]="until">
+                                        <mat-datepicker-toggle
+                                            matSuffix
+                                            [for]="until"></mat-datepicker-toggle>
+                                        <mat-datepicker #until></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <button class="inline-flex ml-3" mat-flat-button color="primary" (click)="download()" [disabled]="formFilter.invalid" >
+                                    <span>Descargar</span>
+                                </button>
+                            </form>
+                            </div>
+                            
+                        </div>
+                        
+                    </mat-card-content>
+                    <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+                
+                </mat-card>
+            </div>
+
+
+
+
+
+
+
+            <div class="col-sm-6 col-lg-4 ng-star-inserted" >
+                <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+                    <h3 style="text-align: center;">Ejecutivo</h3>
+                    <mat-card-content class="mat-mdc-card-content text-center p-24">
+                        
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <form [formGroup]="formFilterEjecutivo" class="flex gap-4 items-center">
+
+                                    <div class="col-sm-12 col-md-12">
+                                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Razón de consulta</mat-label>
+                                        <app-c-async-select formControlName="reason_consultation_id" methodService="reasonConsultation"
+                                            bindLabel="name" bindValue="id">
+                                        </app-c-async-select>
+                                        <mat-error errorSpan controlName="reason_consultation_id"></mat-error>
+                                    </div>
+                                
+                                <div>
+                                    <mat-form-field class="w-full"  appearance="outline" >
+                                        <mat-label>Fecha Desde</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="since"
+                                            [matDatepicker]="since2">
+                                        <mat-datepicker-toggle
+                                            matSuffix
+                                            [for]="since2"></mat-datepicker-toggle>
+                                        <mat-datepicker #since2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                            
+                                <div>
+                                    <mat-form-field class="w-full"  appearance="outline">
+                                        <mat-label>Fecha Hasta</mat-label>
+                                        <input
+                                            matInput
+                                            formControlName="until"
+                                            [matDatepicker]="until2">
+                                        <mat-datepicker-toggle
+                                            matSuffix
+                                            [for]="until2"></mat-datepicker-toggle>
+                                        <mat-datepicker #until2></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <button class="inline-flex ml-3" mat-flat-button color="primary" (click)="downloadEjecutivo()"  >
+                                    <span>Descargar</span>
+                                </button>
+                            </form>
+                            </div>
+                            
+                        </div>
+                        
+                    </mat-card-content>
+                    <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+                
+                </mat-card>
+            </div>
+
+        <!--FIN-->
+
+        <div class="col-sm-6 col-lg-4 ng-star-inserted" >
+            <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+                <h3 style="text-align: center;">Accidentes por Áreas</h3>
+                <mat-card-content class="mat-mdc-card-content text-center p-24">
+                    
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <form [formGroup]="formFilterAccidentes" class="flex gap-4 items-center">
+
+    
+                            
+                            <div>
+                                <mat-form-field class="w-full"  appearance="outline" >
+                                    <mat-label>Fecha Desde</mat-label>
+                                    <input
+                                        matInput
+                                        formControlName="since"
+                                        [matDatepicker]="since3">
+                                    <mat-datepicker-toggle
+                                        matSuffix
+                                        [for]="since3"></mat-datepicker-toggle>
+                                    <mat-datepicker #since3></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                        
+                            <div>
+                                <mat-form-field class="w-full"  appearance="outline">
+                                    <mat-label>Fecha Hasta</mat-label>
+                                    <input
+                                        matInput
+                                        formControlName="until"
+                                        [matDatepicker]="until3">
+                                    <mat-datepicker-toggle
+                                        matSuffix
+                                        [for]="until3"></mat-datepicker-toggle>
+                                    <mat-datepicker #until3></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <button class="inline-flex ml-3" mat-flat-button color="primary" (click)="downloadAccidentes()"  >
+                                <span>Descargar</span>
+                            </button>
+                        </form>
+                        </div>
+                        
+                    </div>
+                    
+                </mat-card-content>
+                <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+            
+            </mat-card>
+        </div>
+
+    <!--FIN-->
+
+
+    <div class="col-sm-6 col-lg-4 ng-star-inserted" >
+        <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+            <h3 style="text-align: center;">Medicamentos usado</h3>
+            <mat-card-content class="mat-mdc-card-content text-center p-24">
+                
+                <div class="row">
+
+                    <div class="col-md-12">
+
+                        <form [formGroup]="formFilterAccidentes" class="flex gap-4 items-center">
+
+
+                        
+                        <div>
+                            <mat-form-field class="w-full"  appearance="outline" >
+                                <mat-label>Fecha Desde</mat-label>
+                                <input
+                                    matInput
+                                    formControlName="since"
+                                    [matDatepicker]="since4">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="since4"></mat-datepicker-toggle>
+                                <mat-datepicker #since4></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    
+                        <div>
+                            <mat-form-field class="w-full"  appearance="outline">
+                                <mat-label>Fecha Hasta</mat-label>
+                                <input
+                                    matInput
+                                    formControlName="until"
+                                    [matDatepicker]="until4">
+                                <mat-datepicker-toggle
+                                    matSuffix
+                                    [for]="until4"></mat-datepicker-toggle>
+                                <mat-datepicker #until4></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <button class="inline-flex ml-3" mat-flat-button color="primary" (click)="downloadMedicament()"  >
+                            <span>Descargar</span>
+                        </button>
+                    </form>
+                    </div>
+                    
+                </div>
+                
+            </mat-card-content>
+            <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+        
+        </mat-card>
+    </div>
+
+<!--FIN-->
+
+
+
+<div class="col-sm-6 col-lg-4 ng-star-inserted" >
+    <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+        <h3 style="text-align: center;">Recetas</h3>
+        <mat-card-content class="mat-mdc-card-content text-center p-24">
+            
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <form [formGroup]="formFilterRecets" class="flex gap-4 items-center">
+
+
+                    
+                    <div>
+                        <mat-form-field class="w-full"  appearance="outline" >
+                            <mat-label>Fecha Desde</mat-label>
+                            <input
+                                matInput
+                                formControlName="since"
+                                [matDatepicker]="since5">
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="since5"></mat-datepicker-toggle>
+                            <mat-datepicker #since5></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                
+                    <div>
+                        <mat-form-field class="w-full"  appearance="outline">
+                            <mat-label>Fecha Hasta</mat-label>
+                            <input
+                                matInput
+                                formControlName="until"
+                                [matDatepicker]="until5">
+                            <mat-datepicker-toggle
+                                matSuffix
+                                [for]="until5"></mat-datepicker-toggle>
+                            <mat-datepicker #until5></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <button class="inline-flex ml-3" mat-flat-button color="primary" (click)="downloadRecets()"  >
+                        <span>Descargar</span>
+                    </button>
+                </form>
+                </div>
+                
+            </div>
+            
+        </mat-card-content>
+        <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+    
+    </mat-card>
+</div>
+
+<!--FIN-->
+
+
+        </div>
+    
+
+    </ng-container>
+
+     <!--FIN-->
+
+
+    <!--ATENCION MEDICA-->
+
+    <ng-container >
+        <div class="row">
+            
+        </div>
+    
+
+    </ng-container>
+
+     <!--FIN-->
+ 
+</mat-card>

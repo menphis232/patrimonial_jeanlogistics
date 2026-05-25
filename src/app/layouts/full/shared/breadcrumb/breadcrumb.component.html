@@ -1,0 +1,32 @@
+@if(pageInfo?.['title'] != 'Analytical' && pageInfo?.['title'] != 'eCommerce'){
+<div class="coca-cola-breadcrumb rounded p-y-20 p-x-20 m-b-20 overflow-hidden">
+  <div class="row">
+    <div class="col-sm-9">
+      <h4 class="page-title m-0 f-s-18 f-w-600 m-b-12 coca-cola-title">
+        {{ pageInfo?.['title'] || getTitleFromUrl() }}
+      </h4>
+      <div class="d-flex align-items-center overflow-hidden">
+        <!-- <ul class="breadcrumb coca-cola-breadcrumb-nav">
+          @for (url of pageInfo?.['urls'] || getDefaultUrls(); track url.url;let index = $index,last
+          = $last ) { @if(!last){
+          <li class="breadcrumb-item" [routerLink]="url.url">
+            <a [routerLink]="url.url">{{ url.title }}</a>
+          </li>
+          }@else {
+          <li class="breadcrumb-item">
+            <i-tabler name="circle-filled" class="icon-8 coca-cola-icon"></i-tabler>
+          </li>
+          <li class="breadcrumb-item active">{{ url.title }}</li>
+          } }
+        </ul> -->
+      </div>
+    </div>
+    <div class="col-sm-3 text-right position-relative">
+      <div class="breadcrumb-icon">
+        <img src="./assets/images/breadcrumb/copo3d.png" alt="breadcrumb" width="120" />
+        <div class="security-label">Seguridad Patrimonial</div>
+      </div>
+    </div>
+  </div>
+</div>
+}

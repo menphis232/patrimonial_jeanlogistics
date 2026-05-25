@@ -1,0 +1,11 @@
+
+.paddingLeft{
+    padding-left: 100px;
+} 
+
+@media (width < 620px),
+(max-device-width: 620px) {
+    .paddingLeft{
+        padding-left: 0;
+    } 
+}

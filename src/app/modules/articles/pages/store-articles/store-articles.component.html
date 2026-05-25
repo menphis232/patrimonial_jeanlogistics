@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-content class="b-t-1">
+                <form [formGroup]="form" #projectNgForm="ngForm">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="name" matInput placeholder="nombre articulo" />
+                                <mat-error errorSpan controlName="name"></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Descripción</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="description" matInput placeholder="Descripción" />
+                                <mat-error errorSpan controlName="description"></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6 m-t-10">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Código</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="code" matInput/>
+                                <mat-error errorSpan controlName="code"></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-6 m-t-10">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Pincipios activos</mat-label>
+                                <app-c-async-select 
+                                    class="w-full" 
+                                    [multiple]="true"
+                                    formControlName="active_principles" 
+                                    methodService="activePrinciples"
+                                    bindLabel="name" 
+                                    bindValue="id">
+                                </app-c-async-select>
+                                <mat-error errorSpan controlName="active_principles"></mat-error>
+                            </div>
+
+                            <!-- <ng-container formArrayName="spares">
+                                <div class="list">
+                                    <ng-container *ngFor="let principle of activePrincipleControl.controls; let i = index" [formGroupName]="i">
+                            
+                                        <div class="list__item">
+                                            <div class="list__container">
+
+                                                <div class="w-100">
+                                                    <app-c-async-select 
+                                                        class="w-full" 
+                                                        formControlName="active_principle" 
+                                                        methodService="activePrinciples"
+                                                        bindLabel="name" 
+                                                        bindValue="id">
+                                                    </app-c-async-select>
+                                                    <mat-error errorSpan controlName="active_principle"></mat-error>
+                                                </div>
+                                                <i-tabler name="trash" class="text-error cursor-pointer" (click)="removeSpares(i)"></i-tabler>
+                                            </div>
+                                        </div>
+                            
+                                    </ng-container>
+                            
+                            
+                                    <div class="list__add" (click)="addSpares()">
+                                        <div class="d-flex flex-column text-primary align-items-center">
+                                            <i-tabler name="brand-stackoverflow" class="text-primary"></i-tabler>
+                                            Añadir principio activo
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container> -->
+                         
+                        </div>
+                        <div class="col-sm-6 m-t-10">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Categorias</mat-label>
+                                <app-c-async-select 
+                                    class="w-full" 
+                                    formControlName="article_category" 
+                                    methodService="categories"
+                                    bindLabel="name" 
+                                    bindValue="id">
+                                </app-c-async-select>
+                                <mat-error errorSpan controlName="article_category"></mat-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 m-t-10">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Marcas</mat-label>
+                                <app-c-async-select 
+                                    class="w-full" 
+                                    formControlName="article_brand" 
+                                    methodService="brands"
+                                    bindLabel="name" 
+                                    bindValue="id">
+                                </app-c-async-select>
+                                <mat-error errorSpan controlName="article_brand"></mat-error>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 m-t-10">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Unidades de medida</mat-label>
+                                <app-c-async-select 
+                                    class="w-full" 
+                                    formControlName="measurement_unit" 
+                                    methodService="measurementUnits"
+                                    bindLabel="name" 
+                                    bindValue="id">
+                                </app-c-async-select>
+                                <mat-error errorSpan controlName="measurement_unit"></mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end m-t-20">
+                        
+                        <button mat-flat-button color="primary" (click)="save()">
+                            <div class="d-flex align-items-center">
+                                <i-tabler 
+                                name="device-floppy" 
+                                class="icon-18 m-r-4"></i-tabler>
+                                <span>Guardar</span>
+                            </div>
+                        </button>
+                      
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

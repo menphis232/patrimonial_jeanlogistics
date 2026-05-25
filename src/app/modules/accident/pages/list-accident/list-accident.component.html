@@ -1,0 +1,113 @@
+<mat-card class="cardWithShadow">
+    <mat-card-content>
+        <div class="row justify-content-between">
+            <div class="col-sm-4">
+                <app-search-field [pagination]="pagination"></app-search-field>
+            </div>
+            <div class="col-sm-4 d-flex align-items-center justify-content-end">
+                <a mat-button [routerLink]="['./add']" mat-flat-button color="primary">Agregar accidente</a>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="cardWithShadow">
+    <ng-container *ngIf="(collaborators$ | async) as patients">
+        <div class="row">
+        <div class="col-sm-6 col-lg-4 ng-star-inserted" *ngFor="let patient of patients">
+            <mat-card class="mat-mdc-card mdc-card cardWithShadow">
+               <mat-card-content class="mat-mdc-card-content text-center p-24">
+                  <!-- <img width="100" class="rounded-circle border p-5" [src]="patient.gender=='femenino' ? 'assets/images/profile/user.png' : 'assets/images/profile/user.png' "> -->
+                  <h4 mat-card-title="" class="mat-mdc-card-title card-title m-t-16 m-b-0"> {{patient.patient?.first_name}} {{patient.patient?.last_name}}</h4><br>
+                  <span class="f-s-12 colorRed">{{patient.diagnoses[0]?.diagnosis?.name}}</span><br>
+                  <span class="f-s-12"><b>Fecha de atención:</b> {{patient.attended_at | date: 'dd/MM/yyyy'}}</span><br>
+                  <span class="f-s-12"><b>Atendido por:</b> {{patient.attended_by?.first_name}} {{patient.attended_by?.last_name}}</span><br>
+                  <span class="f-s-12"><b>Fólio:</b> {{patient.folio}}</span><br>
+                  <span class="f-s-12"><b>Jéfe inmediato:</b> {{patient.immediate_boss}}</span><br>
+                  <span class="f-s-12"><b>Posee incapacidad?:</b> {{patient.incapacities?.length===0 ? 'No' : 'Si'}}</span><br>
+                  <span class="f-s-12"><b>Posee investigación?:</b> {{patient.investigations?.length===0 ? 'No' : 'Si'}}</span><br>
+                
+                  <div class="m-t-20"><span class="f-s-14" [ngClass]="patient.status?.name=='Finalizada' ? 'colorRed' : 'colorGreen' "> {{patient.status?.name}} </span></div>
+               </mat-card-content>
+               <mat-divider role="separator" class="mat-divider mat-divider-horizontal" aria-orientation="horizontal"></mat-divider>
+               <div class="row">
+                <div class="col-12 p-y-12 d-flex ">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                        <mat-icon>
+                        <i-tabler name="dots" class="icon-20"></i-tabler>
+                        </mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu" class="cardWithShadow">
+
+                        <button (click)="openDialog(patient.id)" mat-menu-item>
+                            <mat-icon>remove_red_eye</mat-icon>
+                            <span>Ver detalle</span>
+                          </button>
+
+                          <button (click)="download(patient.id)" mat-menu-item>
+                            <mat-icon>cloud_download</mat-icon>
+                            <span>Descargar</span>
+                          </button>
+
+                          <button *ngIf="patient.exit_passes && patient.exit_passes.length===0" [routerLink]="['../exitpass/generate',patient.medical_event.medical_consultation_id]"  mat-menu-item>
+                            <mat-icon>exit_to_app</mat-icon>
+                            <span>Generar pase de salida</span>
+                          </button>
+                          <button [routerLink]="['../investigation/generate',patient.medical_event.medical_consultation_id]"  mat-menu-item>
+                            <mat-icon>find_in_page</mat-icon>
+                            <span>Investigación</span>
+                          </button>
+                          <button  [routerLink]="['../recipe/recipe',patient.medical_event.medical_consultation_id]"  mat-menu-item>
+                            <mat-icon>description</mat-icon>
+                            <span>Generar receta médica</span>
+                          </button>
+
+                        <button [routerLink]="['../incapacity/validate',patient.medical_event.medical_consultation_id]"  mat-menu-item>
+                            <mat-icon>accessible</mat-icon>
+                            <span>Incapacidad</span>
+                          </button>
+                     
+                        <button routerLink="{{patient.id}}"  mat-menu-item>
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar</span>
+                          </button>
+                    </mat-menu>
+                </div>
+                  
+                
+               </div>
+            </mat-card>
+         </div>
+        </div>
+       
+        <ng-container *ngIf="pagination.isLoading">
+            <div
+                class="table-loading-records">
+                <i-tabler name="search" class="icon-40"></i-tabler>
+                <div class="table-loading-records__title">Cargando accidentes...
+                </div>
+            </div>
+        </ng-container>
+    
+        <ng-container *ngIf="!pagination.isLoading && patients.length == 0">
+            <div
+                class="table-no-records">
+                <i-tabler name="vaccine" class="icon-40"></i-tabler>
+                <div class="table-no-records__tilte">
+                    No se encontraron accidentes registrados
+                </div>
+            </div>
+        </ng-container>
+
+        <mat-paginator 
+            [ngClass]="{ 'hidden': patients.length == 0 }"
+            [length]="pagination.total"
+            [pageIndex]="pagination.pageIndex" 
+            [pageSize]="pagination.perPage" 
+            [pageSizeOptions]="[50, 80, 100 ]"
+            [showFirstLastButtons]="true">
+        </mat-paginator>
+
+    </ng-container>
+ 
+</mat-card>

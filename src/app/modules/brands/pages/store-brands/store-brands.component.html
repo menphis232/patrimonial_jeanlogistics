@@ -1,0 +1,217 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-content class="b-t-1">
+                <form [formGroup]="form" #projectNgForm="ngForm">
+                    <div class="row">
+                        <!-- Campo farm_id -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de costo</mat-label>
+                            <app-c-async-select formControlName="farm" methodService="costCenters"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="farm"></mat-error>
+                        </div>
+
+                        <!-- Campo status_camera_id -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Estatus</mat-label>
+                            <app-c-async-select formControlName="status_camera" methodService="statusCamera"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="status_camera"></mat-error>
+                        </div>
+
+                        <!-- Campo access_id -->
+                        <!-- <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Acceso</mat-label>
+                            <app-c-async-select formControlName="access" methodService="accessCamera"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="access_id"></mat-error>
+                        </div> -->
+
+                        <!-- Campo alarm -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Alarma</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="alarm" matInput placeholder="" />
+                                <mat-error errorSpan controlName="alarm"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_internal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Camara interna</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_internal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_internal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_peripheral -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Camara perimetral</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_peripheral" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_peripheral"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_false -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Camara falsa</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_false" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_false"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_access -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Acceso a la cámara</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_access" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_access"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo investment -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Inversión</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="investment" matInput placeholder="" />
+                                <mat-error errorSpan controlName="investment"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo alarm_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de alarma</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="alarm_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="alarm_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_internal_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de camara interna</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_internal_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_internal_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_peripheral_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de camara perimetral</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_peripheral_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_peripheral_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_false_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de camara falsa</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_false_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_false_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo camera_access_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de camara de acceso</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="camera_access_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="camera_access_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo siege -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Cerco</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="siege" matInput placeholder="" />
+                                <mat-error errorSpan controlName="siege"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo investment_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de inversión</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="investment_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="investment_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo red_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de red</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="red_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="red_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo dvr_proposal -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Propuesta de DVR</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="dvr_proposal" matInput placeholder="" />
+                                <mat-error errorSpan controlName="dvr_proposal"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo nube -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nube</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="nube" matInput placeholder="" />
+                                <mat-error errorSpan controlName="nube"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo memory -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Memoria</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="memory" matInput placeholder="" />
+                                <mat-error errorSpan controlName="memory"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo priority -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Prioridad</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="priority" matInput placeholder="" />
+                                <mat-error errorSpan controlName="priority"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Campo comments -->
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Comentarios</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="comments" matInput placeholder="" />
+                                <mat-error errorSpan controlName="comments"></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button mat-flat-button color="primary" (click)="save()">
+                            <div class="d-flex align-items-center">
+                                <i-tabler name="device-floppy" class="icon-18 m-r-4"></i-tabler>
+                                <span>Guardar</span>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

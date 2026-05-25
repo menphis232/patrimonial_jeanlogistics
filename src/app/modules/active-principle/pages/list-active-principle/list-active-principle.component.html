@@ -1,0 +1,83 @@
+
+    <mat-card class="cardWithShadow">
+        <mat-card-content>
+            <div class="row justify-content-between">
+                <div class="col-sm-4">
+                    <app-search-field [pagination]="pagination"></app-search-field>
+                </div>
+                <div class="col-sm-4 d-flex align-items-center justify-content-end">
+                    <a mat-button [routerLink]="['../add']" mat-flat-button color="primary">Agregar principios activo</a>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    
+    <mat-card class="cardWithShadow">
+        <ng-container *ngIf="(activesPrinciples$ | async) as activesPrinciples">
+            <ng-container *ngIf="activesPrinciples.length > 0;">
+
+                <div class="row">
+                    <ng-container *ngFor="let element of activesPrinciples;">
+                        <div class="col-sm-1 col-md-4 m-b-10">
+                            <mat-card-content class="text-center p-24">
+                                <div class="d-flex justify-content-center">
+                                    <div class="logo-icon bg-primary">
+                                        <i-tabler name="brand-stackoverflow" class="icon-40 text-white"></i-tabler>
+                                    </div>
+                                </div>
+                                <h4 mat-card-title class="card-title m-t-16 m-b-0">
+                                  {{ element.name }}
+                                </h4>
+                                <div class="d-flex flex-column">
+                                    <span class="f-s-12">{{ element.created_at | date: 'dd/MM/yy hh:mm a' }}</span>
+                                    <span class="f-s-12">{{ element.description ?? "---"}}</span>
+                                </div>
+                                <div class="m-t-20">
+                                    <a
+                                        [routerLink]="['../edit', element.id]"
+                                        mat-flat-button 
+                                        class="m-r-8" 
+                                        color="primary">Editar</a>
+                                    <button 
+                                        (click)="destroy(element.id)"
+                                        mat-flat-button 
+                                        color="warn">Eliminar</button>
+                                </div>
+                              </mat-card-content>
+                        </div>
+                    </ng-container>
+                </div>
+            </ng-container>
+    
+            <ng-container *ngIf="pagination.isLoading">
+                <div
+                    class="table-loading-records">
+                    <i-tabler name="search" class="icon-40"></i-tabler>
+                    <div class="table-loading-records__title">Cargando principios activos...
+                    </div>
+                </div>
+            </ng-container>
+        
+            <ng-container *ngIf="!pagination.isLoading && activesPrinciples.length == 0">
+                <div
+                    class="table-no-records">
+                    <i-tabler name="brand-stackoverflow" class="icon-40"></i-tabler>
+                    <div class="table-no-records__tilte">
+                        No se encontraron principios activos registrados
+                    </div>
+                </div>
+            </ng-container>
+    
+            <mat-paginator 
+                [ngClass]="{ 'hidden': activesPrinciples.length == 0 }"
+                [length]="pagination.total"
+                [pageIndex]="pagination.pageIndex" 
+                [pageSize]="pagination.perPage" 
+                [pageSizeOptions]="[50, 80, 100 ]"
+                [showFirstLastButtons]="true">
+            </mat-paginator>
+    
+        </ng-container>
+     
+    </mat-card>
+

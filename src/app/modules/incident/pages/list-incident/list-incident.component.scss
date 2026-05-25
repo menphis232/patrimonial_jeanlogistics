@@ -1,0 +1,137 @@
+.table-container {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.custom-table {
+  background: white;
+}
+
+.header-cell {
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c3e50;
+  letter-spacing: 0.5px;
+}
+
+.header-row {
+  background-color: #f8f9fa;
+}
+
+.data-row {
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #f8f9fa !important;
+  }
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.bg-light-primary {
+  background-color: #e3f2fd;
+}
+
+.action-buttons {
+  opacity: 0.7;
+  transition: opacity 0.3s;
+
+  .data-row:hover & {
+    opacity: 1;
+  }
+}
+
+.custom-menu {
+  min-width: 200px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search-field-custom {
+  width: 100%;
+}
+
+.custom-paginator {
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+}
+
+// Status badges
+.status-pending {
+  background-color: #fff3e0;
+  color: #f57c00;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.status-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.status-progress {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.folios-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  
+  .icon-sm {
+    font-size: 14px;
+    margin-right: 4px;
+  }
+}
+
+.bg-light-secondary {
+  background-color: #f5f5f5;
+}
+
+.text-secondary {
+  color: #757575;
+}
+
+.bg-light-success {
+  background-color: #e8f5e9;
+}
+
+.text-success {
+  color: #2e7d32;
+}
+
+.mr-1 {
+  margin-right: 4px;
+}
+
+.mb-1 {
+  margin-bottom: 4px;
+}
+
+.text-primary {
+  color: #1976d2;
+}

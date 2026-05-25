@@ -1,0 +1,25 @@
+.existing-files {
+    .file-item {
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #e9ecef;
+        }
+
+        .file-info {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            
+            a {
+                color: #007bff;
+                text-decoration: none;
+                
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

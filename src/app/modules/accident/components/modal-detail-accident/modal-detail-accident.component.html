@@ -1,0 +1,98 @@
+<h2 class="f-w-500 m-b-24" mat-dialog-title><strong>Ver detalles</strong></h2>
+
+
+<mat-dialog-content style="max-width: 600px">
+  <ng-container *ngIf="patient; else loadingPatient">
+    <div class="d-flex align-items-center m-b-16">
+      <img class="rounded-circle" width="100"
+        [src]="patient.gender == 'femenino' ? './assets/images/profile/user.png' : './assets/images/profile/user.png' ">
+  
+      <h2 style="margin-left: auto; margin-right: auto;">{{patient.patient.first_name}} {{patient.patient.last_name}}</h2>
+    </div>
+    <div class="row">
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Causa del accidente</label>
+          <span>{{ patient.medical_event?.cause?.description }}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Partes Afectadas</label>
+          <span *ngFor="let part of patient.medical_event?.affected_parts">{{ part.name }}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Sitio de cuidado</label>
+          <span>{{ patient.medical_event?.care_place?.description }}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Tipo de daño</label>
+          <span>{{ patient.medical_event?.injury_types?.description}}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Riesgo</label>
+          <span>{{ patient.medical_event?.risk?.description}}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Tiempo</label>
+          <span>{{ patient.medical_event?.time_type?.description}}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Jéfe inmediato</label>
+          <span>{{ patient.immediate_boss}}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-4 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Fecha de la atención</label>
+          <span>{{ patient.attended_at | date:'yyyy-MM-dd'}}</span>
+        </div>
+      </div>
+  
+      <div class="col-sm-1 col-md-12 m-t-20">
+        <div class="d-flex flex-column">
+          <label class="f-w-600 m-b-4">Atendido por</label>
+          <span>{{ patient.attended_by?.first_name}} {{ patient.attended_by?.last_name}}</span>
+        </div>
+      </div>
+  
+  
+    </div>
+  </ng-container>
+
+  <ng-template #loadingPatient>
+    <div
+        class="patient-loading">
+        <i-tabler name="search" class="icon-40"></i-tabler>
+        <div class="patient-loading__title">Cargando paciente...
+        </div>
+    </div>
+  </ng-template>
+  
+</mat-dialog-content>
+
+
+<div mat-dialog-actions class="p-x-24 p-b-24">
+  <div class="w-100 d-flex justify-content-end">
+    
+    <button mat-flat-button color="warn" (click)="closeDialog()">Cancel</button>
+    
+  </div>
+</div>

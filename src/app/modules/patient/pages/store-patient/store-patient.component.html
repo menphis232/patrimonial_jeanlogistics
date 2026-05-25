@@ -1,0 +1,191 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Centro de costo</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <form [formGroup]="form" >
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input  formControlName="name" matInput placeholder="" />
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Código</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="code"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                  
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de centro de costo</mat-label>
+                            <app-c-async-select formControlName="farm_type" methodService="typeCostCenters"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="farm_type"></mat-error>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Tipo de edificio</mat-label>
+                            <app-c-async-select formControlName="building" methodService="buildType"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="building"></mat-error>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono 1</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="phone_1"  placeholder="teléfono" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono 2</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="phone_2"  placeholder="teléfono" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Correo electrónico</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="email"  placeholder="email" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-1 col-md-6">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Imagen de la locacion</mat-label>
+                            <app-dropzone
+                                [deleteOnlyLocal]="true"
+                                class="w-100"
+                                formControlName="location_image"
+                                (filesAdded)="onDropzoneChange($event)"
+                                (filesRemoved)="removeImage()"></app-dropzone>
+                        </div> 
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Dirección</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="address"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Colonia</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="colony"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Calle</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="street"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+        
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Estado</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="state"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Código Zip</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="CP"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Responsable</mat-label>
+                            <app-c-async-select formControlName="responsible" methodService="users"
+                                bindLabel="name" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="responsible"></mat-error>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados operativos permanentes</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="permanent_operative_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados administrativos permanentes</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="permanent_admin_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados operativos temporales</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="temporal_operative_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados administrativos temporales</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="temporal_admin_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados operativos sindicados</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="unionized_operative_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Empleados administrativos sindicados</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input matInput formControlName="unionized_admin_employees"  placeholder="" />
+                            </mat-form-field>
+                        </div>
+              
+                        <div class="col-sm-12 col-md-4">
+                            <ng-container formArrayName="activities">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Actividades</mat-label>
+                           
+                            <div class="row w-100 mt-3">
+                                <ng-container *ngFor="let item of allergiesInForm.controls; index as Idx" [formGroupName]="Idx">
+                                  <div class="col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <!-- <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre de la alergia</mat-label> -->
+                                        <div class="input-group mb-3">
+                                            <app-c-async-select formControlName="farm_activity_id" methodService="farmActivities"
+                                            bindLabel="description" bindValue="id">
+                                        </app-c-async-select>
+                                
+                                          <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="description" placeholder="Descripción" />
+                                          </mat-form-field>
+                                          <button mat-icon-button color="warn" (click)="removeAllergieByIndex(Idx)" >
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </ng-container>
+                                
+                              </div>
+                              <button mat-icon-button color="primary" (click)="addAllergie()" >
+                                <mat-icon>add</mat-icon>
+                              </button>
+                            </ng-container>
+                        </div>
+                        <div class="col-sm-1 col-md-6">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Archivos</mat-label>
+                            <app-dropzone
+                                [deleteOnlyLocal]="true"
+                                class="w-100"
+                                formControlName="files"></app-dropzone>
+                        </div> 
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-12">
+                            <button mat-flat-button color="primary" (click)="save()">Guardar</button>
+                        </div>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<ng-select 
+        appearance="outline"
+        [items]="items | async" 
+        [bindLabel]="bindLabelTemplate"
+        [bindValue]="bindValue"
+        [loading]="loading"
+        [readonly]="disabled"
+        [placeholder]="placeholder"
+        [multiple]="multiple"
+        [closeOnSelect]="!multiple"
+        [(ngModel)]="selectValue"
+
+        notFoundText="{{ 'Sin resultados' }}"
+        #ngSelect
+        
+        (change)="emitChanges($event)"
+        appendTo="body"
+    >
+    <!-- <ng-template ng-header-tmp *ngIf="false">
+          <a class="btn-link" (click)="selectAll()">Seleccionar todos</a>
+    </ng-template> -->
+</ng-select>

@@ -1,0 +1,19 @@
+<mat-drawer-container class="h-full">
+    <mat-drawer 
+        class="w-full md:w-128 dark:bg-gray-900" 
+        [mode]="drawerMode" 
+        [opened]="false" 
+        [position]="'end'"
+        (backdropClick)="onBackdropClicked()" 
+        [disableClose]="true" 
+        (closedStart)="onDrawerClosedStart()"
+        (closed)="onDrawerClosed()"
+        #matDrawer>
+        <router-outlet></router-outlet>
+    </mat-drawer>
+    <mat-drawer-content class="relative">
+        <ng-content></ng-content>
+    </mat-drawer-content>
+
+</mat-drawer-container>
+

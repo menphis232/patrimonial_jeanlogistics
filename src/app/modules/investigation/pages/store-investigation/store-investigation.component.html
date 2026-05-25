@@ -1,0 +1,359 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-content class="b-t-1">
+                <form [formGroup]="form" #projectNgForm="ngForm">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Inspección</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="inspection" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Descripción</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="description" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Daños a la propiedad</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="damage_to_property" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Versión del jefe</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="instant_boss_version" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de la versión del jefe</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="instant_boss_version_at" matInput [matDatepicker]="picker">
+                                <mat-hint>MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Traumatismo servero?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="severe_traumatic_event" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">El riesgo estaba identificado en el IPERC del puesto?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="iperc_risk_identified" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Están establecidas las medidas de control del IPERC?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="iperc_control_measures" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Se siguen las medidas de control establecidas para el riesgo identificado IPERC?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="iperc_control_measures_execute" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Se requiere actualizar IPERC?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="iperc_update_required" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Existe evidencia de Inducción al puesto (procedimientos operativos)?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="has_evidence_job_induction" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Existe evidencia de Uso de equipo de protección personal ?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="has_evidence_safety_gear_used" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Existe evidencia de Riesgos y controles asociados a su puesto ?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="has_evidence_risk_controls" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"> Existe evidencia de Procedimientos de seguridad aplicables al puesto ?</mat-label>
+                            <!-- <mat-form-field appearance="outline" class="w-100"> -->
+                                <mat-radio-group formControlName="has_evidence_security_procedures" aria-label="Selecciona una opción">
+                                    <mat-radio-button  value=true>Si</mat-radio-button>
+                                    <mat-radio-button  value=false>No</mat-radio-button>
+                                  </mat-radio-group>
+                                  
+                            <!-- </mat-form-field> -->
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="observations" >
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 col-md-12">
+                            <ng-container formArrayName="immediate_causes">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Causa inmediata</mat-label>
+                           
+                            <div class="row w-100 mt-3">
+                                <ng-container  *ngFor="let item of injuryInForm?.controls; index as Idx" [formGroupName]="Idx">
+                                  <div class="col-sm-12 col-md-4">
+                                    <div class="form-group">
+                                       
+                                        <div class="input-group mb-3">
+                                            <app-c-async-select formControlName="immediate_cause_id" methodService="inmediateCause"
+                                            bindLabel="description" bindValue="id">
+                                        </app-c-async-select>
+                                
+                                          <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="description" placeholder="Descripción" />
+                                          </mat-form-field>
+                                          <button mat-icon-button color="warn" (click)="removeInjuryByIndex(Idx)" >
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </ng-container>
+                                
+                              </div>
+                              <button mat-icon-button color="primary" (click)="addInjury()" >
+                                <mat-icon>add</mat-icon>
+                              </button>
+                            </ng-container>
+                        </div>
+
+
+                        <div class="col-sm-12 col-md-12">
+                            <ng-container formArrayName="basic_causes">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Causa básica</mat-label>
+                           
+                            <div class="row w-100 mt-3">
+                                <ng-container  *ngFor="let item of basicCauseForm?.controls; index as Idx" [formGroupName]="Idx">
+                                  <div class="col-sm-12 col-md-4">
+                                    <div class="form-group">
+                                       
+                                        <div class="input-group mb-3">
+                                            <app-c-async-select formControlName="basic_cause_id" methodService="basicCause"
+                                            bindLabel="description" bindValue="id">
+                                        </app-c-async-select>
+                                
+                                          <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="description" placeholder="Descripción" />
+                                          </mat-form-field>
+                                          <button mat-icon-button color="warn" (click)="removeBasicCausesByIndex(Idx)" >
+                                            <mat-icon>delete</mat-icon>
+                                          </button>
+                                        </div>
+                                      </div>
+                                  </div>
+                                </ng-container>
+                                
+                              </div>
+                              <button mat-icon-button color="primary" (click)="addBasicCauses()" >
+                                <mat-icon>add</mat-icon>
+                              </button>
+                            </ng-container>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Causa raíz del accidente</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="root_cause_description" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Herramienta utilizada</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                           
+                            <input matInput formControlName="tool_used" >
+                            </mat-form-field>
+                        </div>
+
+
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="participants">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Participantes</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of participantsForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="name" placeholder="Nombre del participante" />
+                                          </mat-form-field>
+
+                                          <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="work_job" placeholder="Puesto de trabajo" />
+                                          </mat-form-field>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="department" placeholder="Departamento" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeParticipantsByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addParticipants()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+
+
+
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="witnesses">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Testigos</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of witenessesInForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="name" placeholder="Nombre del testigo" />
+                                          </mat-form-field>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="description" placeholder="Descripción" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeWitenessesByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addWitenesses()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+
+                    <div class="col-sm-12 col-md-12">
+                        <ng-container formArrayName="actions">
+                        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Acciones</mat-label>
+                       
+                        <div class="row w-100 mt-3">
+                            <ng-container  *ngFor="let item of actionsForm?.controls; index as Idx" [formGroupName]="Idx">
+                              <div class="col-sm-12 col-md-4">
+                                <div class="form-group">
+                                   
+                                    <div class="input-group mb-3">
+                                        <app-c-async-select formControlName="employee_id" methodService="employee"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                        <mat-form-field  appearance="outline" class="w-100">
+                                            <input matInput formControlName="description" placeholder="Descripción" />
+                                          </mat-form-field>
+                            
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="responsible" placeholder="Responsable" />
+                                      </mat-form-field>
+                                      <mat-form-field  appearance="outline" class="w-100">
+                                        <input matInput formControlName="email" placeholder="Email" />
+                                      </mat-form-field>
+                                      <button mat-icon-button color="warn" (click)="removeActionsByIndex(Idx)" >
+                                        <mat-icon>delete</mat-icon>
+                                      </button>
+                                    </div>
+                                  </div>
+                              </div>
+                            </ng-container>
+                            
+                          </div>
+                          <button mat-icon-button color="primary" (click)="addActions()" >
+                            <mat-icon>add</mat-icon>
+                          </button>
+                        </ng-container>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <app-dropzone
+                        [deleteOnlyLocal]="true"
+                        class="w-100"
+                        formControlName="files"></app-dropzone>
+                    </div>
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        
+                        <button mat-flat-button color="primary" (click)="save()">
+                            <div class="d-flex align-items-center">
+                                <i-tabler 
+                                name="device-floppy" 
+                                class="icon-18 m-r-4"></i-tabler>
+                                <span>Guardar</span>
+                            </div>
+                        </button>
+                      
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

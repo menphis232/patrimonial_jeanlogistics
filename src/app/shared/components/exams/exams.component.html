@@ -1,0 +1,687 @@
+<div class="row">
+    <div class="col-lg-12">
+        <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+                <mat-card-title class="m-b-0">Examenes</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+                <form [formGroup]="form" >
+                    <div class="row">
+     
+                       <!--  <div class="col-sm-12 col-md-4"  *ngIf="findExams('BH')">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">BH</mat-label>
+                            <app-c-async-select formControlName="bh_id" methodService="general"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="bh_id"></mat-error>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4"  *ngIf="findExams('P. VIRAL') ">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">P.Viral</mat-label>
+                            <app-c-async-select formControlName="pviral_id" methodService="positivenegative"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="pviral_id"></mat-error>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4" *ngIf="findExams('ANTIDOPING') ">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Antidoping</mat-label>
+                            <app-c-async-select formControlName="antidoping_id" methodService="positivenegative"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="antidoping_id"></mat-error>
+                        </div>
+
+                        <div class="col-sm-12 col-md-4"  *ngIf="findExams('RX TÓRAX') ">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">RX Tórax</mat-label>
+                            <app-c-async-select formControlName="rxtorax_id" methodService="general"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="rxtorax_id"></mat-error>
+                        </div> -->
+
+               <!--          <div class="col-sm-12 col-md-4"  *ngIf="findExams('RX LUMBOSACRA AP Y LATERAL') ">
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Rx Lumbosacra</mat-label>
+                            <app-c-async-select formControlName="rxlumbosacra_id" methodService="general"
+                                bindLabel="description" bindValue="id">
+                            </app-c-async-select>
+                            <mat-error errorSpan controlName="rxlumbosacra_id"></mat-error>
+                        </div> -->
+
+                         <!--EXAMEN QUIMICOS SOLVENTES-->
+
+                         <div class="form-group col-md-12" *ngIf="findExams('Quimicos/Solventes') " formGroupName="qs">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Químicos/Solventes</b></label>
+                            </div>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">QS</mat-label>
+                                    <app-c-async-select formControlName="qs" methodService="qs"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="qs_id"></mat-error> -->
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                     <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">BH</mat-label>
+                                        <app-c-async-select formControlName="bh" methodService="bh"
+                                            bindLabel="description" bindValue="id">
+                                        </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="bh_id"></mat-error> -->
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                      <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Espirometría</mat-label>
+                                    <app-c-async-select formControlName="spirometry" methodService="espirometria"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="spirometry_id"></mat-error> -->
+                                
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="observations"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                       
+                             
+                                    <app-dropzone
+                                    [deleteOnlyLocal]="true"
+                                    class="w-100"
+                                    formControlName="files">
+                                        
+                                    </app-dropzone>
+                    
+                                </div>
+                              </div>
+                         </div>
+
+
+                          <!--EXAMEN SOMATOMETRIA-->
+
+                         <div class="form-group col-md-12" *ngIf="findExams('Somatometría') " formGroupName="somatometry">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Somatometría</b></label>
+                            </div>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Talla</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="size"  placeholder="" />
+                                    </mat-form-field>
+
+                                    <mat-error *ngIf="form.get('somatometry').get('size').hasError('sizeRange')"> La talla debe estar entre 135 y 205 cm.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="size"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Peso</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="weight"  placeholder="" />
+                                    </mat-form-field>
+                                    <mat-error *ngIf="form.get('somatometry').get('weight').hasError('weightRange')"> El peso debe estar entre 35 y 200 kg.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="weight"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Perímetro Abdominal</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="abdominal_perimetera"  placeholder="" />
+                                    </mat-form-field>
+                                    <mat-error *ngIf="form.get('somatometry').get('abdominal_perimetera').hasError('abdominalRange')"> El perímetro abdominal debe estar entre 60 y 150 cm.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="abdominal_perimetera"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">IMC</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="imc"  placeholder="" />
+                                    </mat-form-field>
+                                    <!-- <mat-error errorSpan formControlName="imc"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Presión sistólica</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="systolic_presure"  placeholder="" />
+                                    </mat-form-field>
+                                    <mat-error *ngIf="form.get('somatometry').get('systolic_presure').hasError('presureRange')"> La Presión sistólica debe estar entre 40 y 200 mmHg.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="systolic_presure"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Presión diastólica</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="diastolic_presure"  placeholder="" />
+                                    </mat-form-field>
+                                    <mat-error *ngIf="form.get('somatometry').get('diastolic_presure').hasError('presureRange')"> La Presión diastólica debe estar entre 40 y 200 mmHg.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="diastolic_presure"></mat-error> -->
+                                </div>
+                                 <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Frecuencia cardíaca</mat-label>
+                                   <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="heart_rate"  placeholder="" />
+                                    </mat-form-field>
+                                    <mat-error *ngIf="form.get('somatometry').get('heart_rate').hasError('heartRange')"> La Frecuencia cardíaca debe estar entre 35 y 160 lpm.</mat-error>
+                                    <!-- <mat-error errorSpan formControlName="heart_rate"></mat-error> -->
+                                </div>
+
+                        
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="observations"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                       
+                             
+                                    <app-dropzone
+                                    [deleteOnlyLocal]="true"
+                                    class="w-100"
+                                    formControlName="files">
+                                        
+                                    </app-dropzone>
+                    
+                                </div>
+                              </div>
+                         </div>
+
+                      <!--EXAMEN ANTIDOPING-->
+
+                         <div class="form-group col-md-12" *ngIf="findExams('Antidoping') " formGroupName="antidoping">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Antidoping</b></label>
+                            </div>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Resultado</mat-label>
+                                    <app-c-async-select formControlName="result" methodService="antidoping"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="result_id"></mat-error> -->
+                                </div>
+                                  <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="observations"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                  
+                             
+                                    <app-dropzone
+                                    [deleteOnlyLocal]="true"
+                                    class="w-100"
+                                    formControlName="files">
+                                        
+                                    </app-dropzone>
+                    
+                                </div>
+                              
+                              </div>
+                         </div>
+
+
+                         <!--EXAMEN SGSA-->
+
+                         <div class="form-group col-md-12" *ngIf="findExams('Seguridad Alimentaría') " formGroupName="sgsa">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>SGSA</b></label>
+                            </div>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">R.Febriles</mat-label>
+                                    <app-c-async-select formControlName="rf" methodService="febriles"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="rf_id"></mat-error> -->
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Copro. Cultivo</mat-label>
+                                    <app-c-async-select formControlName="copro" methodService="copro"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="copro_id"></mat-error> -->
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Cultivo Faringeo</mat-label>
+                                    <app-c-async-select formControlName="exfar" methodService="cultivo"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="exfar_id"></mat-error> -->
+                               </div>
+                                  <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                    <app-dropzone
+                                    [deleteOnlyLocal]="true"
+                                    class="w-100"
+                                    formControlName="files">
+                                        
+                                    </app-dropzone>
+                    
+                                </div>
+                              </div>
+                         </div>
+
+
+                          <!--EXAMEN musculoesquelético-->
+
+
+                          <div class="form-group col-md-12" formGroupName="muscoskeletals" *ngIf="findExams('Sobre esfuerzo muscular') ">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Musculoesquelético</b></label>
+                            </div>
+                              <div class="row">
+                               <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Resultado</mat-label>
+                                    <app-c-async-select formControlName="mobility_arches" methodService="mobility"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="mobility_arches_id"></mat-error> -->
+                                </div>
+                                  <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Escaneo oseo</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="bone_scan"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                                  <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="observations"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                              </div>
+                         </div>
+
+                          <!--EXAMEN LIPIDOS-->
+
+<!-- 
+                         <div class="form-group" formGroupName="lipids" *ngIf="findExams('LÍPIDOS Y GLUCOSA') ">
+                            <label for="witnesses" class="mr-3 col-md-12" style="text-align: center;"><b>Lípidos y Glucosa</b></label>
+                              <div class="row">
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Lípidos</mat-label>
+                                    <app-c-async-select formControlName="lipids_id" methodService="general"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <mat-error errorSpan controlName="lipids_id"></mat-error>
+                                </div>
+                                <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Glucosa</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput controlName="lipids_qty"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                              </div>
+                         </div> -->
+
+
+                          <!--EXAMEN Espirometría-->
+
+
+                          <div class="form-group col-md-12" formGroupName="spirometry" *ngIf="findExams('Espirometría') ">
+                            <div class="row">
+                                <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Espirometría</b></label>
+                            </div>
+                              <div class="row">
+                               <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Resultado</mat-label>
+                                    <app-c-async-select formControlName="result" methodService="spirometryResult"
+                                        bindLabel="description" bindValue="id">
+                                    </app-c-async-select>
+                                    <!-- <mat-error errorSpan formControlName="result_id"></mat-error> -->
+                                </div>
+                                  <div class="col-sm-12 col-md-4" >
+                                    <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput formControlName="observations"  placeholder="" />
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                    <app-dropzone
+                                    [deleteOnlyLocal]="true"
+                                    class="w-100"
+                                    formControlName="files">
+                                        
+                                    </app-dropzone>
+                    
+                                </div>
+                              </div>
+                         </div>
+
+
+                                 <!--EXAMEN Audiometría-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="audiometry" *ngIf="findExams('audiometría') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Audiometría</b></label>
+                                    </div>
+                                      <div class="row">
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Audiometría oido derecho</mat-label>
+                                            <app-c-async-select formControlName="ear_right" methodService="earRight"
+                                                bindLabel="description" bindValue="id">
+                                            </app-c-async-select>
+                                            <!-- <mat-error errorSpan formControlName="ear_right_id"></mat-error> -->
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Audiometría oido izquierdo</mat-label>
+                                            <app-c-async-select formControlName="ear_left" methodService="earLeft"
+                                                bindLabel="description" bindValue="id">
+                                            </app-c-async-select>
+                                            <!-- <mat-error errorSpan formControlName="ear_left_id"></mat-error> -->
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+
+                                    <!--EXAMEN seguridad radicacional-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="radiation_safety" *ngIf="findExams('Seguridad Radiológica') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Seguridad radiológica</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+
+                                    <!--EXAMEN seguridad radicacional-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="emergency_brigades" *ngIf="findExams('Brigadas de Emergencia') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Brigadas de emergencia</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+        
+
+
+                                    <!--EXAMEN humos de soldadura-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="welding_fumes" *ngIf="findExams('Humos de soldadura') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Humos de soldadura</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+
+
+                                    <!--EXAMEN taec-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="taec" *ngIf="findExams('Trabajos en Altura, Espacios Confinados') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>TAEC</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+                                   <!--EXAMEN rcacv-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="rcacv" *ngIf="findExams('Riesgo Coronario Adm. y Conducción Vehicular') ">
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>RCACV</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+
+                                      <!--EXAMEN lumbar_rx-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="lumbar_rx" >
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>RX lumbar</b></label>
+                                    </div>
+                                      <div class="row">
+                                    
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+        
+        
+
+                                 <!--EXAMEN Campimetría-->
+
+
+                                 <div class="form-group col-md-12" formGroupName="campimetry"  >
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Campimetría</b></label>
+                                    </div>
+                                      <div class="row">
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Campimetría ojo derecho</mat-label>
+                                            <app-c-async-select formControlName="eye_right" methodService="campimetryRight"
+                                                bindLabel="description" bindValue="id">
+                                            </app-c-async-select>
+                                            <!-- <mat-error errorSpan formControlName="eye_right_id"></mat-error> -->
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Campimetría ojo izquierdo</mat-label>
+                                            <app-c-async-select formControlName="eye_left" methodService="campimetryLeft"
+                                                bindLabel="description" bindValue="id">
+                                            </app-c-async-select>
+                                            <!-- <mat-error errorSpan formControlName="eye_left_id"></mat-error> -->
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                            <app-dropzone
+                                            [deleteOnlyLocal]="true"
+                                            class="w-100"
+                                            formControlName="files">
+                                                
+                                            </app-dropzone>
+                            
+                                        </div>
+                                      </div>
+                                 </div>
+
+                                 <div class="form-group col-md-12"  >
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Aptitud y recomendaciones</b></label>
+                                    </div>
+                                    <div class="row">
+                                  
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Aptitude</mat-label>
+                                            <app-c-async-select formControlName="aptitude" methodService="aptitude"
+                                                bindLabel="description" bindValue="id">
+                                            </app-c-async-select>
+                                            <!-- <mat-error errorSpan formControlName="eye_left_id"></mat-error> -->
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Observación</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="observations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4" >
+                                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Recomendacion</mat-label>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <input matInput formControlName="recomendations"  placeholder="" />
+                                            </mat-form-field>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+
+
+                                 <!--ARCHIVOS-->
+
+                                     <div class="form-group col-md-12"  >
+                                    <div class="row">
+                                        <label for="witnesses" class="mr-3 col-md-12 lineTitle" style="text-align: center;"><b>Archivos</b></label>
+                                    </div>
+                                      <div class="row">
+                                             <div class="col-sm-12 col-md-12">
+                                      
+                             
+                                                <app-dropzone
+                                                [deleteOnlyLocal]="true"
+                                                class="w-100"
+                                                formControlName="files">
+                                                    
+                                                </app-dropzone>
+                                
+                                            </div>
+                                        
+                                      </div>
+                                 </div>
+
+
+
+
+
+
+                                
+
+                    </div>
+                
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

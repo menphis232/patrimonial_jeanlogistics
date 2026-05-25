@@ -1,0 +1,301 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+/**
+* ================================== ng-select ==================================
+*/
+
+.ng-select {
+    padding-bottom: 0;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline:hover::after {
+    border-color: inherit;
+    border-width: 1px;
+}
+
+.ng-dropdown-panel.ng-select-bottom {
+    border-radius: 4px;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline {
+    min-height: 51px;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+    padding: 0.3em;
+}
+
+.ng-select .ng-select-container.ng-appearance-outline::after {
+    height: calc(100% - .15em);
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    padding-left: 1rem;
+    padding-bottom: 0.3rem;
+}
+
+.ng-dropdown-panel.ng-select-bottom {
+    top: calc(100%);
+}
+
+/**
+* ================================== utils ==================================
+*/
+.text-secondary {
+    color: #6f7e93;
+}
+
+/**
+* ================================== tables ==================================
+*/
+
+.table-no-records {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+
+    @media (min-width: 768px) {
+        padding-top: 15rem;
+        padding-bottom: 15rem;
+    }
+
+    &__tilte {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        text-align: center;
+    }
+}
+
+.table-loading-records {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    
+    &__tilte {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        text-align: center;
+    }
+}
+
+
+.status {
+    padding: 0.125rem 0.75rem;
+    border-radius: 300px;
+    font-weight: 600;
+    font-size: 0.75rem;
+
+    &--warning {
+        background-color: #fef3c7;
+        color: #92400e;
+    }
+
+    &--success {
+        background-color: #dcfce7;
+        color: #166534;
+    }
+
+    &--danger {
+        background-color: #fee0e0;
+        color: #65161d;
+    }
+}
+
+.mat-mdc-menu-panel { 
+    max-height: 500px !important; 
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+// Estilos globales para los modales de PDF
+.mat-dialog-container {
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+// Clase específica para modales de PDF
+.pdf-dialog {
+  .mat-dialog-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .mat-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: none !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  pdf-viewer {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+}
+
+.full-screen-modal {
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 12px;
+  }
+  
+  .mat-dialog-content {
+    margin: 0;
+    padding: 0;
+    max-height: none;
+  }
+}
+
+.large-modal {
+  .mat-dialog-container {
+    padding: 0;
+    border-radius: 12px;
+    max-width: 98vw !important;
+    display: flex;
+    overflow: hidden !important;
+  }
+  
+  .mat-dialog-content {
+    margin: 0;
+    padding: 0;
+    max-height: none !important;
+    overflow: hidden !important;
+  }
+}
+
+// Mejora el scroll del modal
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+.movement-detail-dialog {
+  .mat-dialog-container {
+    padding: 0;
+    overflow: visible;
+    border-radius: 8px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    
+    .mat-dialog-content {
+      overflow-y: auto;
+      overflow-x: visible;
+      flex: 1;
+    }
+  }
+}
+
+// Estilos globales para scrollbars
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+
+// Estilos para modal grande de recorrido de seguridad
+.large-dialog {
+  .mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 12px !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+    width: 90vw !important;
+    height: 90vh !important;
+    overflow: hidden !important;
+  }
+  
+  .mat-dialog-content {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+
+  .mat-dialog-actions {
+    margin: 0 !important;
+    padding: 12px 24px !important;
+    border-top: 1px solid #eee !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+// Responsive para pantallas más pequeñas
+@media (max-width: 768px) {
+  .large-dialog {
+    .mat-dialog-container {
+      max-width: 95vw !important;
+      max-height: 95vh !important;
+      width: 95vw !important;
+      height: 95vh !important;
+    }
+  }
+}

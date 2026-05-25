@@ -1,0 +1,78 @@
+<div class="blank-layout-container justify-content-center">
+  <div class="position-relative row w-100 h-100">
+    <div class="col-lg-7 col-xl-8 bg-gredient p-0">
+      <div class="p-24 h-100">
+        @if(options.theme === 'light'){
+        <a [routerLink]="['/dashboards/dashboard1']">
+          <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="width: 20%;"  />
+        </a>
+        }
+        @if(options.theme === 'dark'){
+        <a [routerLink]="['/dashboards/dashboard1']">
+          <img src="./assets/images/logos/logo.png" class="align-middle m-2" alt="logo" style="width: 20%;"  />
+        </a>
+        }
+
+        <div class="align-items-center justify-content-center img-height d-none d-lg-flex">
+          <img src="./assets/images/backgrounds/login-bg.svg" alt="login" style="max-width: 500px" />
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 col-xl-4 p-0">
+      <div class="p-32 d-flex align-items-start align-items-lg-center justify-content-center h-100">
+        <div class="row justify-content-center w-100">
+          <div class="col-lg-9 max-width-form">
+            <h4 class="f-w-700 f-s-24 m-0">Bienvenido</h4>
+            <span class="f-s-14 d-block mat-body-1 m-t-8">Iniciar sesión</span>
+            <!-- form -->
+            <form class="m-t-30" [formGroup]="signInForm">
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Correo electrónico</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput formControlName="email" />
+                <mat-error errorSpan controlName="email"></mat-error>
+              </mat-form-field>
+
+              <!-- password -->
+
+              
+              <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">Contraseña</mat-label>
+              <mat-form-field appearance="outline" class="w-100" color="primary">
+                <input matInput type="password" formControlName="password" #passwordField/>
+                <button
+                  mat-icon-button
+                  type="button"
+                  (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                  matSuffix>
+                    <i-tabler 
+                      *ngIf="passwordField.type === 'password'"
+                      name="eye" 
+                      class="icon-18 align-items-center"></i-tabler>
+                    <i-tabler 
+                      *ngIf="passwordField.type === 'text'"
+                      name="eye-off" 
+                      class="icon-18 align-items-center"></i-tabler>
+                  </button>
+                <mat-error errorSpan controlName="password"></mat-error>
+              </mat-form-field>
+
+              <button
+                  mat-flat-button 
+                  color="primary" 
+                  class="w-100" 
+                  [disabled]="signInForm.disabled"
+                  (click)="signIn()">
+                  <span *ngIf="!signInForm.disabled">
+                      Iniciar sesión
+                  </span>
+                  <mat-progress-spinner
+                      *ngIf="signInForm.disabled"
+                      [diameter]="24"
+                      [mode]="'indeterminate'"></mat-progress-spinner>
+                </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

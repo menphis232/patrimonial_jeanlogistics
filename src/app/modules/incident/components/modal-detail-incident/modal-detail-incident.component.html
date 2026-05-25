@@ -1,0 +1,104 @@
+<div class="modal-container">
+  <h2 class="modal-title" mat-dialog-title>
+    <mat-icon class="title-icon">report_problem</mat-icon>
+    Detalles del Incidente
+  </h2>
+
+  <mat-dialog-content>
+    <ng-container *ngIf="patient; else loadingPatient">
+      <div class="incident-details">
+        <!-- Información Principal -->
+        <div class="detail-section">
+          <h3 class="section-title">Información General</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Fecha del Evento</span>
+              <span class="value">{{patient.event_date | date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Folio de Queja</span>
+              <span class="value highlight">{{patient.folio_complaint || 'N/A'}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Estado del Caso</span>
+              <span class="status-badge" [ngClass]="{'status-open': patient.status_case?.description === 'Abierto'}">
+                {{patient.status_case?.description}}
+              </span>
+            </div>
+            <div class="info-item">
+              <span class="label">Pérdida Monetaria</span>
+              <span class="value money">$ {{patient.lost_money | number:'1.2-2'}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ubicación -->
+        <div class="detail-section">
+          <h3 class="section-title">Ubicación</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Granja/Planta</span>
+              <span class="value">{{patient.farm?.name}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Tipo</span>
+              <span class="value">{{patient.farm_type?.description}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Lugar</span>
+              <span class="value">{{patient.place?.description}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Micro Negocio</span>
+              <span class="value">{{patient.micro_business?.description}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detalles Adicionales -->
+        <div class="detail-section">
+          <h3 class="section-title">Detalles</h3>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Cantidad</span>
+              <span class="value">{{patient.quantity}} {{patient.measurement?.description}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Guardia de Seguridad</span>
+              <span class="value">{{patient.security_guard ? 'Sí' : 'No'}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Responsable</span>
+              <span class="value">{{patient.user?.name}}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Evidencias -->
+        <div class="detail-section">
+          <h3 class="section-title">Evidencias Fotográficas</h3>
+          <div class="evidence-grid">
+            <div *ngFor="let file of patient.files" class="evidence-card">
+              <img [src]="rutaImagen + file.name" [alt]="file.original_name" class="evidence-img"/>
+              <div class="evidence-comment" *ngIf="file.pivot.comment">
+                <mat-icon>comment</mat-icon>
+                <span>{{file.pivot.comment}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #loadingPatient>
+      <div class="loading-container">
+        <mat-spinner diameter="40"></mat-spinner>
+        <span class="loading-text">Cargando detalles del incidente...</span>
+      </div>
+    </ng-template>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button (click)="closeDialog()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

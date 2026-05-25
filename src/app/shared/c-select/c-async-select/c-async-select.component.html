@@ -1,0 +1,35 @@
+<ng-select 
+        appearance="{{appearance}}"
+        [items]="items$ | async" 
+        [bindLabel]="bindLabelTemplate"
+        [bindValue]="bindValue"
+        [loading]="loading"
+        [readonly]="disabled"
+        [placeholder]="placeholder"
+        [multiple]="multiple"
+        [closeOnSelect]="!multiple"
+        (add)="emitAddEvent($event)"
+        (remove)="emitRemoveEvent($event)"
+        [(ngModel)]="selectValue"
+        notFoundText="{{ 'Sin resultados' }}"
+        #ngSelect
+        appendTo="body"
+        (open)="fillData()"
+        (change)="emitChanges($event)"
+        (search)="search($event)"
+        [clearable]="clearable"
+    >
+    <ng-template *ngIf="multiple" ng-multi-label-tmp let-items="items" let-clear="clear">
+        <div *ngIf="selectValue.length <= 3" class="ng-values-list">
+          <div class="ng-value" *ngFor="let item of items | slice:0:3">
+            <span class="ng-value-icon" (click)="clear(item)">×</span>
+            <span class="ng-value-label">{{ item[bindLabel] }}</span>
+          </div>
+        </div>
+        <div *ngIf="selectValue.length > 3" class="ng-summary-list">
+          <div class="ng-value">
+            <span class="ng-value-label">{{ selectValue.length }} Seleccionados</span>
+          </div>
+        </div>
+      </ng-template>
+</ng-select>

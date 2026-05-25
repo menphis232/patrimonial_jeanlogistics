@@ -1,0 +1,80 @@
+<div 
+	class="container" 
+	appDnd 
+	(fileDropped)="getInputFiles($event)" 
+	[ngClass]="{
+		'no-upload': !uploaded, 
+		'upload': uploaded
+	}">
+
+	<ng-container *ngIf="!uploaded; else viewNoAttached">
+		<input 
+		[accept]="accept"
+		type="file" 
+		[multiple]="isMultiple"
+		#fileDropRef 
+		[attr.capture]="capture || null"
+		capture="camera"
+		id="fileDropRef" (change)="getInputFiles($event.target['files'])" />
+		<i-tabler name="file-filled" class="icon-40"></i-tabler>
+		<h3 class="text-secondary">Suelte los archivos aquí</h3>
+		<label for="fileDropRef" class="bg-primary">Adjuntar</label>
+		
+	</ng-container>
+
+	<ng-template #viewNoAttached>
+		<i-tabler name="discount-check" class="icon-40 text-success"></i-tabler>
+		<h3 class="mt-2 text-secondary">
+			{{ files.length }} archivo{{ files.length > 1 ? 's' : '' }} adjuntado{{ files.length > 1 ? 's' : '' }}
+		</h3>
+	</ng-template>
+
+</div>
+
+<div class="files-list" [ngClass]="{'': !uploaded,'upload': uploaded }">
+	<div class="single-file" *ngFor="let file of files; let i = index">
+		<div class="file-icon text-center" style="width: 50px">
+			<i-tabler name="paperclip" class="icon-20"></i-tabler>
+		</div>
+		<div class="info">
+			<h4 class="name text-secondary">
+				{{ file?.original_name? file?.original_name : file.name }}
+			</h4>
+			<p class="size" *ngIf="file?.size">
+				{{ file?.original_name? file.size : formatBytes(file?.size, 2) }}
+			</p>
+			<app-progress [progress]="file?.progress? file?.progress : 100"></app-progress>
+		</div>
+
+		<div class="delete">
+			<button
+			mat-icon-button 
+				(click)="viewer(i)" 
+				matTooltip="Ver adjunto"
+				*ngIf="file.mimes | supportPreview" href="javascript:void(0)" 
+				class="m-r-1" [ngClass]="{'no-allowed': file?.progress < 100 }">
+				<i-tabler name="eye"></i-tabler>
+			</button>
+			<button 
+				mat-icon-button
+				(click)="download(i)"
+				matTooltip="Descargar adjunto" 
+				href="javascript:void(0)" 
+				class="m-r-1" 
+				[ngClass]="{'no-allowed': file?.progress < 100 }">
+				<i-tabler name="download"></i-tabler>
+			</button>
+			<button
+				mat-icon-button 
+				(click)="deleteFile(i)"
+				matTooltip="Eliminar adjunto" 
+				href="javascript:void(0)" 
+				class="text-danger">
+				<i-tabler name="trash"></i-tabler>
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Requerido por ngx-gallery -->
+<img *ngFor="let item of files; index as i" [lightbox]="i" [src]="item.link" [gallery]="'myLightbox'" hidden>

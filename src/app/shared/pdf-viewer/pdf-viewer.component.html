@@ -1,0 +1,18 @@
+<div class="pdf-viewer-container">
+    <mat-card class="cardWithShadow theme-card">
+        <mat-card-content class="pdf-content">
+            <pdf-viewer
+                [src]="src"
+                [render-text]="true"
+                [autoresize]="true"
+                class="pdf-viewer"
+            ></pdf-viewer>
+
+            <div class="button-container">
+                <button mat-flat-button color="primary" (click)="download()">
+                    <span>Descargar</span>
+                </button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
