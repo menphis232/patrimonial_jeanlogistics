@@ -46,10 +46,10 @@ export class StoreMeasurementComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl(this.id, {}),
       name: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       }),
       description: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       })
     });
 
@@ -70,7 +70,10 @@ export class StoreMeasurementComponent implements OnInit {
   }
 
   getEditData(id: string): void {
-    this._measurementService.show(id).subscribe((brandData: any) => this.form.patchValue(brandData))
+    this._measurementService.show(id).subscribe((brandData: any) =>{ 
+      this.form.patchValue(brandData)
+       this.form.controls['name'].setValue(brandData.description)
+    })
   }
 
   save() {

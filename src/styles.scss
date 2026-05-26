@@ -299,3 +299,13 @@ body {
     }
   }
 }
+
+/* Lightbox para ampliar imagen (acciones correctivas) */
+.image-viewer-dialog-panel.mat-mdc-dialog-container,
+.image-viewer-dialog-panel .mat-dialog-container {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+}

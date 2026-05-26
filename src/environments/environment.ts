@@ -4,10 +4,15 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'https://cdfsp.jeanlogistics.com/api',
-    apiurl: 'https://cdfsp.jeanlogistics.com/api',
-    loginUrl: 'https://cdfsp.jeanlogistics.com/api/',
-    imageUrl: 'https://cdfsp.jeanlogistics.com/',
+    // apiUrl: 'https://cdfsp.jeanlogistics.com/api',
+    // apiurl: 'https://cdfsp.jeanlogistics.com/api',
+    // loginUrl: 'https://cdfsp.jeanlogistics.com/api/',
+    // imageUrl: 'https://cdfsp.jeanlogistics.com/',
+
+    apiUrl: 'http://127.0.0.1:8000/api',
+    apiurl: 'http://127.0.0.1:8000/api',
+    loginUrl: 'http://127.0.0.1:8000/api/',
+    imageUrl: 'http://127.0.0.1:8000/',
     //     apiurl: 'https://stg-13.jeanlogistics.com/public/api/security_patrimonial/',
     // loginUrl: 'https://stg-13.jeanlogistics.com/public/api/',
     // imageUrl: 'https://stg-13.jeanlogistics.com/public/',

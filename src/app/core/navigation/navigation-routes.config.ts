@@ -25,37 +25,10 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
   //   iconName: 'disabled',
   //   route: '/incapacity/list',
   // },
-{
-    displayName: 'Puntos de vulnerabilidad',
-    iconName: 'activity',
-    children: [
-      {
-        displayName: 'Listado de puntos de vulnerabilidad',
-        iconName: 'activity',
-        route: '/vulnerability-points',
-      },
-      {
-        displayName: 'Acciones Correctivas',
-        iconName: 'components',
-        route: '/vulnerability-points/actions',
-      },
-    ],
-  },
-  // {
-  //   route: '/vulnerability-points',
-  //   displayName: 'Puntos de Vulnerabilidad',
-  //   iconName: 'activity',
-
-  // },
   {
     displayName: 'Incidentes',
     iconName: 'medical-cross-filled',
     route: '/incident',
-  },
-  {
-    displayName: 'Expedientes',
-    iconName: 'medical-cross-filled',
-    route: '/expedients/list',
   },
   // {
   //   displayName: 'Consultas',
@@ -114,69 +87,32 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
     iconName: 'route',
     children: [
       {
-        displayName: 'Recorrido de seguridad',
+        displayName: 'Listado de recorridos',
         iconName: 'shield',
         route: 'ergonomic/list/tours',
       },
-      {
-        displayName: 'Áreas',
-        iconName: 'arrow-right-circle',
-        route: 'ergonomic/list',
-      },
     ]
   },
   {
-    displayName: 'Inventario',
-    iconName: 'box-seam',
-    children: [
-      {
-        displayName: 'Inventario general',
-        iconName: 'tag',
-        route: 'brands/list',
-      },
-      // {
-      //   displayName: 'Principios activos',
-      //   iconName: 'brand-stackoverflow',
-      //   route: 'active-principle/list',
-      // },
-      // {
-      //   displayName: 'Unidades de medida',
-      //   iconName: 'ruler-measure',
-      //   route: 'measurement/list',
-      // },
-      // {
-      //   displayName: 'Categorias',
-      //   iconName: 'category',
-      //   route: 'category/list',
-      // },
-      // {
-      //   displayName: 'Articulos',
-      //   iconName: 'article',
-      //   route: 'articles/list',
-      // },
-      // {
-      //   displayName: 'Movimientos',
-      //   iconName: 'credit-card-pay',
-      //   route: 'movements/list',
-      // },
-    ],
-  },
-
-  {
-    displayName: 'Evaluaciones',
+    displayName: 'Análisis de riesgo',
     iconName: 'checklist',
     children: [
       {
-        displayName: 'Vulnerabilidad',
-        iconName: 'alert-triangle',
-        route: 'movements/list',
+        displayName: 'Expedientes',
+        iconName: 'file-text',
+        route: '/expedients/list',
       },
       {
-        displayName: 'Protección',
-        iconName: 'alert-triangle',
-        route: 'protection/list',
+        displayName: 'Listado de puntos de vulnerabilidad',
+        iconName: 'activity',
+        route: '/vulnerability-points',
       },
-    ]
+      {
+        displayName: 'Acciones correctivas',
+        iconName: 'components',
+        route: '/vulnerability-points/actions',
+      },
+    ],
   },
 
 
@@ -198,6 +134,21 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
         displayName: 'Responsables',
         iconName: 'user-check',
         route: '/responsible',
+      },
+      {
+        displayName: 'Categorías de área',
+        iconName: 'category',
+        route: '/area-categories',
+      },
+      {
+        displayName: 'Áreas',
+        iconName: 'arrow-right-circle',
+        route: 'ergonomic/list',
+      },
+      {
+        displayName: 'Inventario general',
+        iconName: 'tag',
+        route: 'brands/list',
       },
     ],
   },

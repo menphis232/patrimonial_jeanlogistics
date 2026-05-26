@@ -175,6 +175,18 @@ export const appRoutes: Routes = [
                         { title: 'Responsables' }
                     ]
                 }
+            },
+            {
+                path: 'area-categories',
+                loadChildren: () => import('./modules/area-category/area-category.module').then(m => m.AreaCategoryModule),
+                data: {
+                    title: 'Categorías de área',
+                    urls: [
+                        { title: 'Dashboard', url: '/dashboard' },
+                        { title: 'Admin', url: '/admin' },
+                        { title: 'Categorías de área' }
+                    ]
+                }
             }
         ]
     }

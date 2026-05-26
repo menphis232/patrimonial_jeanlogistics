@@ -19,7 +19,8 @@
           "options": {
             "allowedCommonJsDependencies": [
               "apexcharts",
-              "bezier-easing"
+              "bezier-easing",
+              "ng2-pdf-viewer"
             ],
             "outputPath": "dist/Modernize",
             "index": "src/index.html",

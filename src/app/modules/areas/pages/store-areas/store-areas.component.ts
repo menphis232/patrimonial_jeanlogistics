@@ -52,16 +52,16 @@ export class StoreAreasComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl(this.id, {}),
       name: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       }),
       code: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       }),
       cost_center: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       }),
       cost_center_type: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       })
     });
 

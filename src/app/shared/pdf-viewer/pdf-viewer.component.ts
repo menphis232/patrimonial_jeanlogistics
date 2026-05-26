@@ -28,7 +28,8 @@ export class PdfViewerComponent implements OnInit {
   }
   download() {
     if (this.blob) {
-      saveAs(this.blob);
+      const fileName = this.data?.fileName || 'evaluacion_vulnerabilidad.pdf';
+      saveAs(this.blob, fileName);
     }
   }
 }

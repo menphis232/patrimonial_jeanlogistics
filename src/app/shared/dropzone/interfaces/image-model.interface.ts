@@ -1,5 +1,6 @@
 export interface ImageModel extends File {
     id?: number;
+    file_id?: number;
     model_type?: string;
     model_id?: number;
     type: string; // Es el type de la base de datos, no del archivo

@@ -16,7 +16,7 @@ export class ListAreasComponent implements OnInit {
   @ViewChild(MatPaginator) private paginator: MatPaginator;
 
   public pagination: MatPagination = new MatPagination
-
+  isGlobal
   constructor(
     private _areasService: AreasService,
     private _confirmation: ConfirmationService,
@@ -28,6 +28,7 @@ export class ListAreasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isGlobal=JSON.parse(localStorage.getItem('isGlobalSelected'))
     this.pagination.changeValues$.subscribe(() => this.paginate())
     this.pagination.next()
   }

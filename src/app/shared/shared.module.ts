@@ -19,6 +19,8 @@ import { MaterialModule } from '../material.module';
 import { ExamsComponent } from './components/exams/exams.component';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { ImageViewerDialogComponent } from './components/image-viewer-dialog/image-viewer-dialog.component';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -57,6 +59,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
         ErrorSpanComponent,
         ExamsComponent,
          PdfViewerComponent,
+        ImageViewerDialogComponent,
 
         /**
          * Directives
@@ -75,6 +78,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 
       ExamsComponent,
        PdfViewerComponent,
+      ImageViewerDialogComponent,
     ],
     providers: [
     ]

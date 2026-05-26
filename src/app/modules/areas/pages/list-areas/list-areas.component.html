@@ -5,7 +5,7 @@
             <div class="col-sm-4">
                 <app-search-field [pagination]="pagination"></app-search-field>
             </div>
-            <div class="col-sm-4 d-flex align-items-center justify-content-end">
+            <div *ngIf="!isGlobal" class="col-sm-4 d-flex align-items-center justify-content-end">
                 <a mat-button [routerLink]="['../add']" mat-flat-button color="primary">Agregar area</a>
             </div>
         </div>
