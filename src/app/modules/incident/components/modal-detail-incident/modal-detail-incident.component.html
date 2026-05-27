@@ -7,7 +7,7 @@
   <mat-dialog-content>
     <ng-container *ngIf="patient; else loadingPatient">
       <div class="incident-details">
-        <!-- Información Principal -->
+        <!-- Información General -->
         <div class="detail-section">
           <h3 class="section-title">Información General</h3>
           <div class="info-grid">
@@ -18,12 +18,6 @@
             <div class="info-item">
               <span class="label">Folio de Queja</span>
               <span class="value highlight">{{patient.folio_complaint || 'N/A'}}</span>
-            </div>
-            <div class="info-item">
-              <span class="label">Estado del Caso</span>
-              <span class="status-badge" [ngClass]="{'status-open': patient.status_case?.description === 'Abierto'}">
-                {{patient.status_case?.description}}
-              </span>
             </div>
             <div class="info-item">
               <span class="label">Pérdida Monetaria</span>
@@ -44,18 +38,33 @@
               <span class="label">Tipo</span>
               <span class="value">{{patient.farm_type?.description}}</span>
             </div>
-            <div class="info-item">
-              <span class="label">Lugar</span>
-              <span class="value">{{patient.place?.description}}</span>
+          </div>
+        </div>
+
+        <!-- Clasificación -->
+        <div class="detail-section">
+          <h3 class="section-title">Clasificación</h3>
+          <div class="info-grid">
+            <div class="info-item" *ngIf="patient.incidence_type?.name || patient.incidence_type">
+              <span class="label">Tipo de Incidencia</span>
+              <span class="value">{{ patient.incidence_type?.description || patient.incidence_type }}</span>
             </div>
-            <div class="info-item">
-              <span class="label">Micro Negocio</span>
-              <span class="value">{{patient.micro_business?.description}}</span>
+            <div class="info-item" *ngIf="patient.incidence_type_description">
+              <span class="label">Descripción del Tipo</span>
+              <span class="value">{{ patient.incidence_type_description }}</span>
+            </div>
+            <div class="info-item" *ngIf="patient.department?.name || patient.department">
+              <span class="label">Departamento</span>
+              <span class="value">{{ patient.department?.description || patient.department }}</span>
+            </div>
+            <div class="info-item" *ngIf="patient.department_description">
+              <span class="label">Descripción del Departamento</span>
+              <span class="value">{{ patient.department_description }}</span>
             </div>
           </div>
         </div>
 
-        <!-- Detalles Adicionales -->
+        <!-- Detalles -->
         <div class="detail-section">
           <h3 class="section-title">Detalles</h3>
           <div class="info-grid">
@@ -64,23 +73,19 @@
               <span class="value">{{patient.quantity}} {{patient.measurement?.description}}</span>
             </div>
             <div class="info-item">
-              <span class="label">Guardia de Seguridad</span>
-              <span class="value">{{patient.security_guard ? 'Sí' : 'No'}}</span>
-            </div>
-            <div class="info-item">
               <span class="label">Responsable</span>
               <span class="value">{{patient.user?.name}}</span>
             </div>
           </div>
         </div>
 
-        <!-- Evidencias -->
+        <!-- Evidencias Fotográficas -->
         <div class="detail-section">
           <h3 class="section-title">Evidencias Fotográficas</h3>
           <div class="evidence-grid">
             <div *ngFor="let file of patient.files" class="evidence-card">
               <img [src]="rutaImagen + file.name" [alt]="file.original_name" class="evidence-img"/>
-              <div class="evidence-comment" *ngIf="file.pivot.comment">
+              <div class="evidence-comment" *ngIf="file.pivot?.comment">
                 <mat-icon>comment</mat-icon>
                 <span>{{file.pivot.comment}}</span>
               </div>

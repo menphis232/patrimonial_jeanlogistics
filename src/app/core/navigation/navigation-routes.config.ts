@@ -67,22 +67,6 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
   //   ],
   // },
   {
-    displayName: 'Guardia de seguridad',
-    iconName: 'shield',
-    children: [
-      {
-        displayName: 'Guardias de seguridad',
-        iconName: 'shield',
-        route: 'category/list',
-      },
-      {
-        displayName: 'Turnos',
-        iconName: 'calendar-check',
-        route: 'category/list/turns',
-      },
-    ]
-  },
-  {
     displayName: 'Recorrido de seguridad',
     iconName: 'route',
     children: [
@@ -90,6 +74,32 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
         displayName: 'Listado de recorridos',
         iconName: 'shield',
         route: 'ergonomic/list/tours',
+      },
+      {
+        displayName: 'Listado de guardia de seguridad',
+        iconName: 'shield',
+        route: '/category/list',
+      },
+      {
+        displayName: 'Turnos',
+        iconName: 'calendar-check',
+        route: '/category/list/turns',
+      },
+    ]
+  },
+  {
+    displayName: 'Puntos de vulnerabilidad',
+    iconName: 'activity',
+    children: [
+      {
+        displayName: 'Listado de puntos de vulnerabilidad',
+        iconName: 'activity',
+        route: '/vulnerability-points',
+      },
+      {
+        displayName: 'Acciones correctivas',
+        iconName: 'components',
+        route: '/vulnerability-points/actions',
       },
     ]
   },
@@ -103,14 +113,14 @@ export const ROUTES_NAVIGATION: NavItem[] = new Array(
         route: '/expedients/list',
       },
       {
-        displayName: 'Listado de puntos de vulnerabilidad',
-        iconName: 'activity',
-        route: '/vulnerability-points',
+        displayName: 'Evaluación de vulnerabilidad',
+        iconName: 'alert-triangle',
+        route: 'movements/list',
       },
       {
-        displayName: 'Acciones correctivas',
-        iconName: 'components',
-        route: '/vulnerability-points/actions',
+        displayName: 'Evaluación de protección',
+        iconName: 'shield',
+        route: 'protection/list',
       },
     ],
   },

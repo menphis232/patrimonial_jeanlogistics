@@ -1,0 +1,151 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <div class="row justify-content-between">
+      
+      <div class="col-sm-4">
+        <app-search-field [pagination]="pagination"></app-search-field>
+      </div>
+
+      <div class="col-sm-8">
+        <form [formGroup]="form" #projectNgForm="ngForm">
+          <div class="row">
+            
+            <div class="col-sm-12 col-md-4">
+              <app-c-async-select
+                formControlName="farm"
+                methodService="costCenters"
+                bindLabel="name"
+                bindValue="id">
+              </app-c-async-select>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="since" matInput [matDatepicker]="since" placeholder="Desde">
+                <mat-datepicker-toggle matIconSuffix [for]="since"></mat-datepicker-toggle>
+                <mat-datepicker #since></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="until" matInput [matDatepicker]="until" placeholder="Hasta">
+                <mat-datepicker-toggle matIconSuffix [for]="until"></mat-datepicker-toggle>
+                <mat-datepicker #until></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card class="cardWithShadow">
+  <ng-container *ngIf="categories$ | async as categories">
+    <ng-container *ngIf="categories.length > 0">
+      <div class="table-responsive">
+        <table mat-table matSort class="no-wrap m-t-0 v-middle w-100" [dataSource]="categories">
+          
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Fecha</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+              {{ element.created_at | date: 'yyyy-MM-dd' }}
+            </td>
+          </ng-container>
+
+          <!-- Farm Column -->
+          <ng-container matColumnDef="farm">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Centro de costo</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+              {{ element.farm?.name }}
+            </td>
+          </ng-container>
+
+          <!-- Realizada por Column -->
+          <ng-container matColumnDef="create_by">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Realizada por</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+              {{ element.security_guard ? (element.security_guard.first_name + ' ' + element.security_guard.last_name) : (element.created_by_user?.name || '—') }}
+            </td>
+          </ng-container>
+
+          <!-- Áreas % Column -->
+          <ng-container matColumnDef="area">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Áreas %</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+              {{ element.progress }} %
+            </td>
+          </ng-container>
+
+          <!-- Duración Column -->
+          <ng-container matColumnDef="duration">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header class="f-w-600 f-s-15">Duración</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14">
+              {{ convertir(element.duration) }}
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="f-w-600 f-s-15">Action</th>
+            <td mat-cell *matCellDef="let element" class="f-s-14 d-flex">
+              <div class="col-12 p-y-12 d-flex justify-content-center">
+                <button mat-icon-button aria-label="Action menu button" [matMenuTriggerFor]="menu">
+                  <mat-icon class="icon-20">more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="download(element.id)">
+                    <mat-icon>cloud_download</mat-icon>
+                    <span>Descargar</span>
+                  </button>
+                  <button mat-menu-item (click)="openDialog(element.id)">
+                    <mat-icon>ballot</mat-icon>
+                    <span>Detalle el recorrido</span>
+                  </button>
+                  <button mat-menu-item (click)="destroy(element.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Eliminar</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </ng-container>
+
+    <!-- Loading State -->
+    <ng-container *ngIf="pagination.isLoading">
+      <div class="table-loading-records">
+        <mat-spinner diameter="40"></mat-spinner>
+        <div class="table-loading-records__title">Cargando recorridos...</div>
+      </div>
+    </ng-container>
+
+    <!-- No Records State -->
+    <ng-container *ngIf="!pagination.isLoading && categories.length === 0">
+      <div class="table-no-records">
+        <mat-icon class="icon-40">tag</mat-icon>
+        <div class="table-no-records__title">No se encontraron recorridos</div>
+      </div>
+    </ng-container>
+
+    <!-- Paginator -->
+    <mat-paginator
+      [ngClass]="{ 'hidden': categories.length === 0 }"
+      [length]="pagination.total"
+      [pageIndex]="pagination.pageIndex"
+      [pageSize]="pagination.perPage"
+      [pageSizeOptions]="[50, 80, 100]"
+      [showFirstLastButtons]="true">
+    </mat-paginator>
+
+  </ng-container>
+</mat-card>

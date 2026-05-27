@@ -2,6 +2,7 @@ import { HttpParams } from "@angular/common/http";
 import { Observable, Subject } from "rxjs";
 import { map, merge, of } from 'rxjs';
 import { PaginateResponseType } from "../interfaces/paginate-response.interface";
+import { CustomHttpParamEncoder } from "../../utils/custom-http-param-encoder";
 
 export class MatPagination {
 
@@ -141,7 +142,7 @@ export class MatPagination {
      * Devuelve objeto de parametros utilizados por el HttpClient
      */
     httpParams(): HttpParams {
-        let queryParams = new HttpParams;
+        let queryParams = new HttpParams({ encoder: new CustomHttpParamEncoder() });
 
         queryParams = queryParams.append("page", this.page);
         queryParams = queryParams.append("per_page", this.perPage);
@@ -149,9 +150,16 @@ export class MatPagination {
         queryParams = queryParams.append("sortedBy", this.sortedBy);
         queryParams = queryParams.append("orderBy", this.orderBy);
 
-        Object.keys(this.params).forEach(key => 
-            queryParams = queryParams.append(key, this.params[key])
-        )
+        Object.keys(this.params).forEach(key => {
+            const value = this.params[key];
+            if (Array.isArray(value)) {
+                value.forEach(v => {
+                    queryParams = queryParams.append(key, v);
+                });
+            } else {
+                queryParams = queryParams.append(key, value);
+            }
+        });
 
         return queryParams;
     }

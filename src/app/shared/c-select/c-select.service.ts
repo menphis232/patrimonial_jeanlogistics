@@ -29,9 +29,24 @@ export class CSelectService {
   processParams(params: IQueryParam[]) {
     if (!params) return {}
 
-    return params.reduce(
-      (obj, item) => Object.assign(obj, { [item.param]: item.value }), {}
-    )
+    return params.reduce((obj, item) => {
+      if (item.value === null) {
+        return obj; 
+      }
+      
+      const key = item.param;
+      if (obj.hasOwnProperty(key)) {
+        if (Array.isArray(obj[key])) {
+          obj[key].push(item.value);
+        } else {
+          obj[key] = [obj[key], item.value];
+        }
+      } else {
+        obj[key] = item.value;
+      }
+      
+      return obj;
+    }, {});
   }
 
   /**
@@ -147,6 +162,7 @@ export class CSelectService {
 
   costCenters(params: IParamsCSelect) {
     this.paginator.search = params.search;
+    this.paginator.params = this.processParams(params.params);
 
     return this.http.get(environment.loginUrl+"farms/getAll?type=farm", {
       params: this.paginator.httpParams()

@@ -4,6 +4,7 @@ import { Observable, of, ReplaySubject, tap } from 'rxjs';
 import { ROUTES_NAVIGATION } from './navigation-routes.config';
 import { UserService } from '../user/user.service';
 import { Navigation } from './navigation.types';
+import { VulnerabilityPointWorkflowService } from '../../modules/vulnerability-point/services/vulnerability-point-workflow.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,8 @@ export class NavigationService
      * Constructor
      */
     constructor(
-        private _userService: UserService
+        private _userService: UserService,
+        private _workflowService: VulnerabilityPointWorkflowService
     )
     {
     }
@@ -44,9 +46,19 @@ export class NavigationService
     get(): Observable<Navigation>
     {
         // const NAVIGATION_ROUTES_FINALLY = this._userService.applyPermissionsToNavigation(ROUTES_NAVIGATION)
+        
+        let finalRoutes = ROUTES_NAVIGATION;
+        if (this._workflowService.isCaptureL2L3()) {
+            finalRoutes = ROUTES_NAVIGATION.filter(route => 
+                route.displayName === 'Recorrido de seguridad' || 
+                route.displayName === 'Puntos de vulnerabilidad' ||
+                route.displayName === 'Dashboard' ||
+                route.navCap === 'APPS'
+            );
+        }
 
         return of({
-            default: ROUTES_NAVIGATION
+            default: finalRoutes
         }).pipe(
             tap((data) => this._navigation.next(data))
         );

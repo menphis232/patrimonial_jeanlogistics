@@ -13,13 +13,8 @@ import { CoreService } from 'src/app/core/services/core.service';
       <a href="/">
         <img
           src="./assets/images/logos/logo.png"
-<<<<<<< HEAD
-          class="align-middle m-2 aline"
-          style="    width: 20%;"
-=======
           class="align-middle m-2"
-          style="    width: 9%;"
->>>>>>> 6a33427 (fix)
+          style="width: 9%;"
           alt="logo"
         />
       </a>

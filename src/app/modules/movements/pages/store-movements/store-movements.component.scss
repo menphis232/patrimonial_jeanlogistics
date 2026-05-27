@@ -1,50 +1,50 @@
-.list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    max-height: 406px;
-    overflow: auto;
-}
+.evaluation-form {
 
-.list__item {
-    display: flex;
-    padding: 1.3rem 2rem;
-    justify-content: space-between;
-    border-radius: 0.875rem;
-    border: 1px solid #E0E0E0;
-}
+  .section-card {
+    margin: 0;
+    padding: 20px 14px 8px;
+    border-radius: 12px;
+    border: 1px solid #eceff5;
+    background: linear-gradient(180deg, #ffffff 0%, #fafbff 100%);
+  }
 
-.list__item--selected {
-    border: 2px solid #0092E2;
-}
+  .form-title {
+    color: #1f2937;
+    margin: 0;
+    font-size: 20px;
+  }
 
-.list__add {
-    cursor: pointer;
-    display: flex;
-    padding: 1.75rem 2rem;
-    justify-content: center;
-    border-radius: 0.875rem;
-    border: 1px dashed #0092E2;
-}
+  .section-header {
+    border-top: 1px solid #e6e9f0;
+    padding-top: 16px;
+    margin-top: 10px;
 
-.list__container {
-    width: 100%;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
- /* Responsive Styles for Mobile */
- @media screen and (max-width: 480px) {
-
-    .list__item {
-        flex-direction: column;
-        gap: 20px;
+    h4 {
+      margin: 0;
+      color: #bb2223;
+      font-size: 15px;
+      letter-spacing: .2px;
     }
+  }
 
-    .list__container {
-        display: flex;
-        flex-direction: column;
-    }
-    
- }
+  .section-add-btn {
+    border-radius: 8px;
+    margin-top: 4px;
+  }
+
+  .form-actions {
+    border-top: 1px solid #e6e9f0;
+    margin-top: 26px;
+    padding-top: 16px;
+  }
+
+  .cancel-btn,
+  .save-btn {
+    min-width: 170px;
+    border-radius: 8px;
+  }
+
+  .save-btn {
+    background-color: #bb2223;
+  }
+}

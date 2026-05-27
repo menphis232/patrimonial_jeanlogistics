@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { StoreMovementsComponent } from './store-movements.component';
+import { StoreProtectionComponent } from './store-protection.component';
 
-describe('StoreMovementsComponent', () => {
-  let component: StoreMovementsComponent;
-  let fixture: ComponentFixture<StoreMovementsComponent>;
+describe('StoreProtectionComponent', () => {
+  let component: StoreProtectionComponent;
+  let fixture: ComponentFixture<StoreProtectionComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ StoreMovementsComponent ]
+      declarations: [ StoreProtectionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StoreMovementsComponent);
+    fixture = TestBed.createComponent(StoreProtectionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -3,8 +3,6 @@
 }
 .colorGreen{
     color: green;
-<<<<<<< HEAD
-=======
 }
 
 .table-container {
@@ -111,5 +109,44 @@
 
 .text-info {
   color: #0288d1;
->>>>>>> 6a33427 (fix)
+}
+
+.toolbar-controls, .toolbar-controls__filters {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.toolbar-controls__control {
+  width: 180px;
+  max-width: 100%;
+}
+
+.toolbar-controls__mat-field, .toolbar-controls__select {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.toolbar-controls__actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .toolbar-controls {
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .toolbar-controls__filters {
+    flex-wrap: nowrap;
+  }
+  .toolbar-controls__control {
+    flex: 0 0 auto;
+  }
+}
+
+::ng-deep .toolbar-controls .mat-mdc-form-field-subscript-wrapper {
+  display: none;
 }

@@ -10,15 +10,37 @@ export const MovementsRoutes: Route[] = [
                 path: 'list',
                 component: ListMovementsComponent,
                 data: {
-                    title: 'Listado de vulnerabilidad',
+                    title: 'Evaluación de vulnerabilidad',
                     urls: [
-                        { title: 'Dashboard', url: '/dashboards' },
-                        { title: 'Listado de vulnerabilidad' },
+                        { title: 'Dashboard', url: '/dashboard' },
+                        { title: 'Evaluación de vulnerabilidad' },
                     ],
                 },
             },
-           
-            
+            {
+                path: 'add-vulnerability',
+                component: StoreMovementsComponent,
+                data: {
+                    title: 'Nueva Eval Vulnerabilidad',
+                    urls: [
+                        { title: 'Dashboard', url: '/dashboard' },
+                        { title: 'Evaluación de vulnerabilidad', url: '/movements/list' },
+                        { title: 'Nueva evaluación' },
+                    ],
+                },
+            },
+            {
+                path: 'edit-vulnerability/:id',
+                component: StoreMovementsComponent,
+                data: {
+                    title: 'Editar Eval Vulnerabilidad',
+                    urls: [
+                        { title: 'Dashboard', url: '/dashboard' },
+                        { title: 'Evaluación de vulnerabilidad', url: '/movements/list' },
+                        { title: 'Editar evaluación' },
+                    ],
+                },
+            },
         ]
     },
 ];

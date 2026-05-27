@@ -10,27 +10,6 @@ import { GeneralConsultationService } from '../../services/general-consultation.
 @Component({
   selector: 'app-modal-detail-general',
   templateUrl: './modal-detail-general.component.html',
-<<<<<<< HEAD
-  // standalone: true,
-  // imports: [
-  //   RouterModule, 
-  //   TablerIconsModule, 
-  //   MaterialModule,
-  //   NgFor, 
-  //   NgIf,
-  //   SharedModule
-  // ],
-=======
-  standalone: true,
-  imports: [
-    RouterModule, 
-    TablerIconsModule, 
-    MaterialModule,
-    NgFor, 
-    NgIf,
-    SharedModule
-  ],
->>>>>>> 6a33427 (fix)
   styleUrls: ['./modal-detail-general.component.scss']
 })
 export class ModalDetailGeneralComponent implements OnInit {

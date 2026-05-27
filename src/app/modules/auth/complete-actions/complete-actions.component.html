@@ -1,0 +1,106 @@
+<div class="ca-page-wrapper">
+
+  <!-- LOGO -->
+  <div class="ca-logo-wrap">
+    <img src="./assets/images/logos/logo.png" alt="logo" class="ca-logo" />
+  </div>
+
+  <!-- Cargando -->
+  <div class="ca-loading" *ngIf="loading">
+    <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+    <p>Cargando...</p>
+  </div>
+
+  <!-- Contenido -->
+  <div class="ca-card" *ngIf="!loading && action">
+
+    <!-- Banner estado -->
+    <div class="ca-status-banner">{{ statusLabel }}</div>
+
+    <!-- Confirmado -->
+    <div class="ca-confirmed" *ngIf="confirmed">
+      <i-tabler name="circle-check" class="icon-confirmed"></i-tabler>
+      <h3>Acción Confirmada</h3>
+      <p>Gracias por completar la acción correctiva.</p>
+    </div>
+
+    <!-- Formulario activo -->
+    <ng-container *ngIf="!confirmed">
+
+      <div class="ca-section">
+        <h2 class="ca-title">Acción correctiva realizada</h2>
+
+        <div class="ca-field" *ngIf="action?.description">
+          <span class="ca-label">Descripción</span>
+          <span class="ca-value">{{ action.description }}</span>
+        </div>
+
+        <div class="ca-field" *ngIf="action?.estimated_date">
+          <span class="ca-label">Fecha Estimada</span>
+          <span class="ca-value">{{ action.estimated_date }}</span>
+        </div>
+      </div>
+
+      <!-- Evidencias existentes -->
+      <div class="ca-section" *ngIf="evidences.length > 0">
+        <h3 class="ca-subtitle">Evidencias de la acción</h3>
+        <p class="ca-hint">Fotos/archivos subidos al completar la acción desde este enlace (correo).</p>
+
+        <div class="ca-evidence-list">
+          <div class="ca-evidence-card" *ngFor="let ev of evidences">
+            <div class="ca-evidence-preview">
+              <img *ngIf="isImage(ev)" [src]="getFileUrl(ev)" [alt]="getFileName(ev)" class="ca-evidence-thumb" />
+              <mat-icon *ngIf="!isImage(ev)" class="ca-file-icon">insert_drive_file</mat-icon>
+            </div>
+            <div class="ca-evidence-info">
+              <span class="ca-evidence-name">{{ getFileName(ev) }}</span>
+              <a [href]="getFileUrl(ev)" target="_blank" download mat-stroked-button color="warn" class="ca-download-btn">
+                <mat-icon>download</mat-icon> Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario completar acción -->
+      <div class="ca-section">
+        <h3 class="ca-subtitle">Completar Acción</h3>
+
+        <form [formGroup]="form">
+          <mat-form-field appearance="outline" class="w-100 m-b-16">
+            <mat-label>Comentarios *</mat-label>
+            <textarea matInput formControlName="comments" rows="4"></textarea>
+            <mat-error *ngIf="form.get('comments')?.invalid && form.get('comments')?.touched">
+              El comentario es obligatorio
+            </mat-error>
+          </mat-form-field>
+
+          <div class="ca-ev-label">
+            Evidencias <span class="ca-ev-hint">(subir fotos al completar la acción)</span>
+          </div>
+          <app-dropzone formControlName="evidences" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+          <span class="ca-error" *ngIf="evidencesError">
+            Debes adjuntar al menos una evidencia
+          </span>
+
+          <div class="ca-action-row">
+            <button mat-flat-button color="warn"
+                    [disabled]="submitting"
+                    (click)="completarAccion()">
+              <mat-progress-spinner *ngIf="submitting" diameter="18" mode="indeterminate" class="btn-spinner"></mat-progress-spinner>
+              <span *ngIf="!submitting">Completar Acción</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </ng-container>
+  </div>
+
+  <!-- Error - no encontrado -->
+  <div class="ca-card ca-error-card" *ngIf="!loading && !action">
+    <mat-icon>error_outline</mat-icon>
+    <p>No se encontró la acción o el enlace no es válido.</p>
+  </div>
+
+</div>

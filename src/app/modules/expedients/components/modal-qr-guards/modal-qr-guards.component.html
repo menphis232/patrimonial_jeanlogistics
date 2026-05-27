@@ -1,0 +1,31 @@
+<h2 mat-dialog-title class="f-w-500 m-b-24">
+  <strong>{{ patient?.name || 'Cargando...' }}</strong>
+</h2>
+
+<mat-dialog-content style="max-width: 800px;">
+  
+  <ng-container *ngIf="patient; else loadingPatient">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 m-t-20">
+        <div class="d-flex flex-column align-items-center">
+          <img *ngIf="qr" alt="Código QR del área" [src]="qr" style="max-width: 100%; height: auto;" />
+          <p *ngIf="!qr" class="text-muted">No hay imagen QR disponible para esta área.</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingPatient>
+    <div class="patient-loading d-flex flex-column align-items-center p-20">
+      <i-tabler name="search" class="icon-40 m-b-10"></i-tabler>
+      <div class="patient-loading__title text-muted">Cargando código qr...</div>
+    </div>
+  </ng-template>
+
+</mat-dialog-content>
+
+<div mat-dialog-actions class="p-x-24 p-b-24">
+  <div class="w-100 d-flex justify-content-end">
+    <button mat-flat-button color="warn" (click)="closeDialog()">Cerrar</button>
+  </div>
+</div>

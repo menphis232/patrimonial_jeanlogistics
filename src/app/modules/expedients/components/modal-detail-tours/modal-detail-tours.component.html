@@ -1,0 +1,60 @@
+<h2 mat-dialog-title class="f-w-500 m-b-24"><strong>Detalle del recorrido de seguridad</strong></h2>
+<mat-dialog-content style="max-width: 800px;">
+  <ng-container *ngIf="patient; else loadingPatient">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 style="margin-left: auto; margin-right: auto;">
+          Centro de trabajo: {{ patient.farm?.name || '—' }}
+        </h2>
+      </div>
+      <div class="col-md-12">
+        <h3 style="margin-left: auto; margin-right: auto;">
+          Recorrido realizado por: {{ patient.security_guard ? (patient.security_guard.first_name + ' ' + patient.security_guard.last_name) : (patient.created_by_user?.name || '—') }}
+        </h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-4 m-t-20">
+        <span><b>Fecha :</b> {{ patient.created_at | date: 'yyyy-MM-dd' }}</span>
+      </div>
+      <div class="col-sm-12 col-md-4 m-t-20">
+        <span><b>Duración :</b> {{ convertir(patient.duration) }}</span>
+      </div>
+      <div class="col-sm-12 col-md-4 m-t-20">
+        <span><b>Área :</b>
+          <span *ngFor="let item of patient.safety_tour_details">{{ item.area?.name }}, </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Observaciones de áreas recorridas</h3>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-12" *ngFor="let detail of patient.safety_tour_details">
+        <div class="col-md-4 col-sm-12">
+          <h3>{{ detail.area?.name }}</h3>
+          <a [href]="rutaMapa(detail.lat, detail.long)" target="_blank">Ver en el mapa</a>
+          <p><b>Observación:</b> {{ detail.observations }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingPatient>
+    <div class="patient-loading">
+      <i-tabler name="search" class="icon-40"></i-tabler>
+      <div class="patient-loading__title">Cargando código qr...</div>
+    </div>
+  </ng-template>
+</mat-dialog-content>
+
+<div mat-dialog-actions class="p-x-24 p-b-24">
+  <div class="w-100 d-flex justify-content-end">
+    <button mat-flat-button color="warn" (click)="closeDialog()">Cerrar</button>
+  </div>
+</div>

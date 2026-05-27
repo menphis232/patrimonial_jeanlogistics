@@ -1,87 +1,320 @@
 <div class="row">
-    <div class="col-lg-12">
-        <mat-card class="cardWithShadow theme-card">
-            <mat-card-content class="b-t-1">
-                <form [formGroup]="form" #projectNgForm="ngForm">
-                    <div class="row">
+  <div class="col-lg-12">
+    <mat-card class="cardWithShadow theme-card">
+      <mat-card-content class="b-t-1">
 
-                        <div class="col-sm-12 m-t-10">
-                            <div class="w-100">
-                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Concepto</mat-label>
-                                <app-c-async-select 
-                                    class="w-full" 
-                                    formControlName="stock_movement_concept" 
-                                    methodService="stockMovementConcepts"
-                                    bindLabel="name" 
-                                    bindValue="id">
-                                </app-c-async-select>
-                                <mat-error errorSpan controlName="stock_movement_concept"></mat-error>
-                            </div>
-                        </div>
+        <form class="evaluation-form" [formGroup]="form" #projectNgForm="ngForm">
 
+          <!-- ══ Encabezado general ══ -->
+          <div class="row section-card">
+            <div class="col-12 m-b-16">
+              <h3 class="mat-subtitle-1 f-w-600 form-title">
+                {{ isEditMode ? 'Editar Eval Vulnerabilidad' : 'Nueva Eval Vulnerabilidad' }}
+              </h3>
+            </div>
 
-                        <div class="col-sm-12 m-t-20">
+            <!-- Centro de costo -->
+            <div class="col-sm-12 col-md-6">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de costo</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="farm_id" (selectionChange)="onFarmChange($event.value)">
+                  <mat-option [value]="null">Seleccione</mat-option>
+                  <mat-option *ngFor="let f of farmOptions" [value]="f.id">{{ f.name }}</mat-option>
+                </mat-select>
+                <mat-error errorSpan controlName="farm_id"></mat-error>
+              </mat-form-field>
+            </div>
 
-                            <ng-container formArrayName="stock_movement_details">
-                                <div class="list">
-                                    <ng-container *ngFor="let element of stockMovementDetails.controls; let i = index" [formGroupName]="i">
-                            
-                                        <div class="list__item">
-                                            <div class="list__container">
+            <!-- Responsable -->
+            <div class="col-sm-12 col-md-6">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Responsable</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-select formControlName="responsible_id">
+                  <mat-option [value]="null">Seleccione</mat-option>
+                  <mat-option *ngFor="let r of responsibleOptions" [value]="r.id">{{ r.name }}</mat-option>
+                </mat-select>
+                <mat-error errorSpan controlName="responsible_id"></mat-error>
+              </mat-form-field>
+            </div>
 
-                                                <div class="w-100">
-                                                    <app-c-async-select 
-                                                        class="w-full" 
-                                                        formControlName="stock_id" 
-                                                        methodService="stocks"
-                                                        bindLabel="description_stock" 
-                                                        bindValue="id">
-                                                    </app-c-async-select>
-                                                    <mat-error errorSpan controlName="stock_id"></mat-error>
-                                                </div>
-                                                <div class="d-flex align-items-center gap-16">
+            <!-- Fecha de evaluación -->
+            <div class="col-sm-12 col-md-6">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de evaluación</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="date_evaluation" [matDatepicker]="pickerEvaluation" />
+                <mat-datepicker-toggle matSuffix [for]="pickerEvaluation"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEvaluation></mat-datepicker>
+                <mat-error errorSpan controlName="date_evaluation"></mat-error>
+              </mat-form-field>
+            </div>
 
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label class="mat-subtitle-2">Cantidad</mat-label>
-                                                        <input formControlName="quantity" matInput placeholder="" />
-                                                        <mat-error errorSpan controlName="quantity"></mat-error>
-                                                    </mat-form-field>
-            
-                                                    <i-tabler name="trash" class="text-error cursor-pointer" (click)="removeMovementDetail(i)"></i-tabler>
-                                                </div>
-                                               
-                                            </div>
-                                        </div>
-                            
-                                    </ng-container>
-                            
-                            
-                                    <div class="list__add" (click)="addMovementDetail()">
-                                        <div class="d-flex flex-column text-primary align-items-center">
-                                            <i-tabler name="brand-stackoverflow" class="text-primary"></i-tabler>
-                                            Añadir detalle
-                                        </div>
-                                    </div>
-                                </div>
-                            </ng-container>
-                         
-                        </div>
-                       
-                    </div>
-                    <div class="d-flex justify-content-end m-t-20">
-                        
-                        <button mat-flat-button color="primary" (click)="save()">
-                            <div class="d-flex align-items-center">
-                                <i-tabler 
-                                name="device-floppy" 
-                                class="icon-18 m-r-4"></i-tabler>
-                                <span>Guardar</span>
-                            </div>
-                        </button>
-                      
-                    </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
+            <!-- Dirección -->
+            <div class="col-sm-12 col-md-6">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Dirección</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="address" placeholder="Domicilio" />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- ══ Reporte Ambiental ══ -->
+          <div class="col-12 m-t-8 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Reporte Ambiental</h4>
+          </div>
+          <div formArrayName="enviroment_report" class="col-12">
+            <div class="row m-b-12" *ngFor="let item of enviromentReports.controls; let i = index" [formGroupName]="i">
+              <div class="col-md-5">
+                <app-dropzone formControlName="file_id" [deleteOnlyLocal]="true"></app-dropzone>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Descripción</mat-label>
+                  <input matInput formControlName="description" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-1 d-flex align-items-center">
+                <button mat-icon-button color="warn" type="button" (click)="removeEnviromentReport(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" type="button" class="section-add-btn" (click)="addEnviromentReport()">
+              + Agregar
+            </button>
+          </div>
+
+          <!-- ══ Materiales Peligrosos ══ -->
+          <div class="col-12 m-t-24 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Materiales Peligrosos</h4>
+          </div>
+          <div formArrayName="hazardous_materials" class="col-12">
+            <div class="row m-b-12" *ngFor="let item of hazardousMaterials.controls; let i = index" [formGroupName]="i">
+              <div class="col-md-11">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Nombre del material</mat-label>
+                  <input matInput formControlName="name" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-1 d-flex align-items-center">
+                <button mat-icon-button color="warn" type="button" (click)="removeRow(hazardousMaterials, i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" type="button" class="section-add-btn" (click)="addHazardousMaterial()">
+              + Agregar
+            </button>
+          </div>
+
+          <!-- ══ Distribuciones de Espacio ══ -->
+          <div class="col-12 m-t-24 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Distribuciones de Espacio</h4>
+          </div>
+          <div formArrayName="space_distributions" class="col-12">
+            <div class="row m-b-12 p-12 border rounded" *ngFor="let item of spaceDistributions.controls; let i = index" [formGroupName]="i">
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Area del centro de costo</mat-label>
+                  <mat-select formControlName="farm_area_id">
+                    <mat-option *ngFor="let area of areas" [value]="area.id">{{ area.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Descripción</mat-label>
+                  <input matInput formControlName="description" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Area m2</mat-label>
+                  <input matInput type="number" formControlName="area_meters" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-2">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Personas</mat-label>
+                  <input matInput type="number" formControlName="persons" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Actividades</mat-label>
+                  <input matInput formControlName="activities" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-4 d-flex align-items-center">
+                <mat-slide-toggle formControlName="dangerous_sustances">Sustancias peligrosas</mat-slide-toggle>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Horario</mat-label>
+                  <mat-select formControlName="work_schedule_id">
+                    <mat-option *ngFor="let w of workSchedule" [value]="w.id">{{ w.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-8">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Descripción del horario</mat-label>
+                  <input matInput formControlName="working_hour_description" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-1 d-flex align-items-end">
+                <button mat-icon-button color="warn" type="button" (click)="removeSpaceDistribution(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" type="button" class="section-add-btn" (click)="addSpaceDistribution()">
+              + Agregar
+            </button>
+          </div>
+
+          <!-- ══ Eventos Potenciales ══ -->
+          <div class="col-12 m-t-24 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Eventos Potenciales</h4>
+          </div>
+          <div formArrayName="potential_events" class="col-12">
+            <div class="row m-b-12 p-12 border rounded" *ngFor="let item of potentialEvents.controls; let i = index" [formGroupName]="i">
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Clasificación</mat-label>
+                  <mat-select formControlName="classification_id">
+                    <mat-option *ngFor="let c of classificationOptions" [value]="c.id">{{ c.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Tipo</mat-label>
+                  <mat-select formControlName="type_id">
+                    <mat-option *ngFor="let t of typeOptions" [value]="t.id">{{ t.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Fecha del evento</mat-label>
+                  <input matInput formControlName="event_date" [matDatepicker]="eventPicker" />
+                  <mat-datepicker-toggle matSuffix [for]="eventPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #eventPicker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Descripción de clasificación</mat-label>
+                  <input matInput formControlName="classification_description" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-5">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Observaciones</mat-label>
+                  <input matInput formControlName="observations" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-1 d-flex align-items-center">
+                <button mat-icon-button color="warn" type="button" (click)="removePotentialEvent(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" type="button" class="section-add-btn" (click)="addPotentialEvent()">
+              + Agregar
+            </button>
+          </div>
+
+          <!-- ══ Observaciones ══ -->
+          <div class="col-12 m-t-24 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Observaciones</h4>
+          </div>
+          <div formArrayName="observations" class="col-12">
+            <div class="row m-b-16 p-12 border rounded" *ngFor="let obs of observations.controls; let i = index" [formGroupName]="i">
+              <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Título</mat-label>
+                  <input matInput formControlName="title" />
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Descripción</mat-label>
+                  <textarea matInput rows="4" formControlName="description"></textarea>
+                </mat-form-field>
+              </div>
+              <!-- Archivos de observación -->
+              <div formArrayName="files" class="col-12">
+                <div class="row m-b-8" *ngFor="let f of getObservationFiles(i).controls; let fi = index" [formGroupName]="fi">
+                  <div class="col-md-11">
+                    <app-dropzone formControlName="file_id" [deleteOnlyLocal]="true"></app-dropzone>
+                  </div>
+                  <div class="col-md-1 d-flex align-items-center">
+                    <button mat-icon-button color="warn" type="button" (click)="removeObservationFile(i, fi)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-12 m-t-8">
+                  <button mat-stroked-button color="warn" type="button" (click)="addObservationFile(i)">
+                    + Adjuntar archivo
+                  </button>
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-end m-t-8">
+                <button mat-icon-button color="warn" type="button" (click)="removeRow(observations, i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <button mat-stroked-button color="primary" type="button" class="section-add-btn" (click)="addObservation()">
+              + Agregar observación
+            </button>
+          </div>
+
+          <!-- ══ Checklist de Evaluación ══ -->
+          <div class="col-12 m-t-24 m-b-16 section-header">
+            <h4 class="mat-subtitle-2 f-w-600">Checklist de Evaluación</h4>
+          </div>
+          <div formArrayName="sections" class="col-12">
+            <div class="p-12 border rounded m-b-12" *ngFor="let sec of sections.controls; let si = index" [formGroupName]="si">
+              <div class="m-b-12">
+                <strong class="mat-subtitle-2 f-w-600">{{ sec.get('section_name')?.value }}</strong>
+              </div>
+              <div formArrayName="questions">
+                <div class="m-b-12" *ngFor="let q of getSectionQuestions(si).controls; let qi = index" [formGroupName]="qi">
+                  <div class="m-b-8 f-w-600">{{ q.get('question_name')?.value }}</div>
+                  <!-- Opciones radio -->
+                  <mat-radio-group *ngIf="hasAnswerOptions(si, qi)" formControlName="answer_id" class="d-flex flex-column gap-8">
+                    <mat-radio-button *ngFor="let ans of q.get('answers')?.value" [value]="ans.id">
+                      {{ ans.name }}
+                    </mat-radio-button>
+                  </mat-radio-group>
+                  <!-- Texto libre si no hay opciones -->
+                  <mat-form-field *ngIf="!hasAnswerOptions(si, qi)" appearance="outline" class="w-100 m-t-8">
+                    <mat-label>Respuesta</mat-label>
+                    <input matInput formControlName="answer_text" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ══ Acciones ══ -->
+          <div class="d-flex justify-content-end m-t-20 gap-8 form-actions">
+            <button mat-stroked-button color="warn" type="button" class="cancel-btn" [routerLink]="['/movements/list']">
+              Cancelar
+            </button>
+            <button mat-flat-button color="primary" type="button" class="save-btn" (click)="save()">
+              <div class="d-flex align-items-center">
+                <i-tabler name="device-floppy" class="icon-18 m-r-4"></i-tabler>
+                <span>Guardar Eval Vulnerabilidad</span>
+              </div>
+            </button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

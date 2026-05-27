@@ -46,12 +46,14 @@ export class AuthService
      *
      * @param credentials
      */
-    signIn(id,data: any): Observable<any> {
-
-        return this._httpClient.put(`${environment.apiUrl}medical_consultations/investigations/actions/${id}`, data);
-
-
-}
+    signIn(id: any, data: any, farmId?: any, farmTypeId?: any): Observable<any> {
+        let url = `${environment.apiUrl}/vulnerability-points/corrective_actions/${id}/email-opened`;
+        const params: string[] = [];
+        if (farmId) params.push(`farm_id=${farmId}`);
+        if (farmTypeId) params.push(`farm_type_id=${farmTypeId}`);
+        if (params.length) url += '?' + params.join('&');
+        return this._httpClient.get(url);
+    }
     signIn2(credentials: { email: string; password: string }): Observable<any>
     {
         // Throw error, if the user is already logged in
@@ -136,7 +138,13 @@ export class AuthService
         if (this.accessToken) {
 
             this._authenticated = true;
-            
+
+            // Si el BehaviorSubject del usuario está vacío, recargarlo desde la API
+            // para que los roles queden disponibles en memoria
+            if (!this._userService['_user']?.getValue?.()?.id) {
+                return this.refreshUserUsingToken();
+            }
+
             return of(true);
         }
 
@@ -170,10 +178,22 @@ export class AuthService
     //     return this.refreshUserUsingToken();
     // }
 
-    show(id: string) {
-        return this._httpClient.get(`${environment.apiUrl}medical_consultations/investigations/actions/${id}`)
+    show(id: string, farmId?: any, farmTypeId?: any) {
+        let url = `${environment.apiUrl}/vulnerability-points/corrective_actions/${id}?with=evidences`;
+        if (farmId) url += `&farm_id=${farmId}`;
+        if (farmTypeId) url += `&farm_type_id=${farmTypeId}`;
+        return this._httpClient.get(url)
           .pipe(
             map((response: any) => response)
           );
-      }
+    }
+
+    completeAction(id: any, data: any, farmId?: any, farmTypeId?: any): Observable<any> {
+        let url = `${environment.apiUrl}/vulnerability-points/corrective_actions/complete/${id}`;
+        const params: string[] = [];
+        if (farmId) params.push(`farm_id=${farmId}`);
+        if (farmTypeId) params.push(`farm_type_id=${farmTypeId}`);
+        if (params.length) url += '?' + params.join('&');
+        return this._httpClient.put(url, data);
+    }
 }

@@ -1,0 +1,258 @@
+<div class="detail-modal-container">
+
+  <div class="loading-state" *ngIf="isLoading">
+    <mat-spinner diameter="40"></mat-spinner>
+    <p>Cargando evaluación...</p>
+  </div>
+
+  <ng-container *ngIf="!isLoading && movement">
+
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="title-section">
+          <h2 class="main-title">
+            <mat-icon>security</mat-icon>
+            Evaluación de Vulnerabilidad
+          </h2>
+          <div class="date-badge">
+            <mat-icon>calendar_today</mat-icon>
+            {{ movement.date_evaluation | date:'dd/MM/yyyy' }}
+          </div>
+        </div>
+        <div class="farm-info">
+          <span class="farm-name">{{ movement.farm?.name }}</span>
+          <span class="farm-code">{{ movement.farm?.code }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="dashboard-stats">
+      <div class="stat-card total-employees">
+        <div class="stat-icon"><mat-icon>people</mat-icon></div>
+        <div class="stat-info">
+          <div class="stat-value">{{ totalEmployees }}</div>
+          <div class="stat-label">Total empleados</div>
+        </div>
+      </div>
+      <div class="stat-card materials">
+        <div class="stat-icon warning"><mat-icon>warning</mat-icon></div>
+        <div class="stat-info">
+          <div class="stat-value">{{ movement.hazardous_materials?.length || 0 }}</div>
+          <div class="stat-label">Materiales peligrosos</div>
+        </div>
+      </div>
+      <div class="stat-card events">
+        <div class="stat-icon info"><mat-icon>event</mat-icon></div>
+        <div class="stat-info">
+          <div class="stat-value">{{ movement.potential_events?.length || 0 }}</div>
+          <div class="stat-label">Eventos potenciales</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <mat-tab-group animationDuration="0ms" class="detail-tabs">
+
+      <!-- Información general -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">info</mat-icon>
+          General
+        </ng-template>
+        <div class="tab-content">
+          <div class="info-grid">
+            <div class="info-section">
+              <div class="info-content">
+                <div class="info-item">
+                  <span class="label">Centro de costo</span>
+                  <span class="value">{{ movement.farm?.name }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Fecha de evaluación</span>
+                  <span class="value">{{ movement.date_evaluation | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Dirección</span>
+                  <span class="value">{{ movement.address || '—' }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">Resultado</span>
+                  <span class="value">{{ movement.results || '—' }}</span>
+                </div>
+              </div>
+            </div>
+            <!-- Responsable -->
+            <div class="responsible-card" *ngIf="movement.responsible">
+              <div class="avatar"><mat-icon>person</mat-icon></div>
+              <div class="responsible-info">
+                <div class="name">{{ movement.responsible?.name }}</div>
+                <div class="email">{{ movement.responsible?.email }}</div>
+                <div class="phone">{{ movement.responsible?.phone }}</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empleados -->
+          <div class="employees-grid">
+            <div class="employee-category permanent">
+              <div class="employee-stats">
+                <div class="stat-box">
+                  <span class="number">{{ movement.permanent_admin_employees || 0 }}</span>
+                  <span class="stat-label">Administrativos fijos</span>
+                </div>
+                <div class="stat-box">
+                  <span class="number">{{ movement.permanent_operative_employees || 0 }}</span>
+                  <span class="stat-label">Operativos fijos</span>
+                </div>
+              </div>
+            </div>
+            <div class="employee-category temporal">
+              <div class="employee-stats">
+                <div class="stat-box">
+                  <span class="number">{{ movement.temporal_admin_employees || 0 }}</span>
+                  <span class="stat-label">Administrativos temporales</span>
+                </div>
+                <div class="stat-box">
+                  <span class="number">{{ movement.temporal_operative_employees || 0 }}</span>
+                  <span class="stat-label">Operativos temporales</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Materiales peligrosos -->
+      <mat-tab *ngIf="movement.hazardous_materials?.length">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">warning</mat-icon>
+          Materiales
+        </ng-template>
+        <div class="tab-content">
+          <div class="materials-section">
+            <div class="materials-grid">
+              <div class="material-card" *ngFor="let m of movement.hazardous_materials">
+                <mat-icon>science</mat-icon>
+                <span>{{ m.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Áreas / Espacios -->
+      <mat-tab *ngIf="movement.space_distributions?.length">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">map</mat-icon>
+          Áreas
+        </ng-template>
+        <div class="tab-content">
+          <div class="spaces-section">
+            <div class="spaces-grid">
+              <mat-card class="space-card" *ngFor="let s of movement.space_distributions">
+                <div mat-card-avatar><mat-icon>place</mat-icon></div>
+                <mat-card-content>
+                  <div class="space-stats">
+                    <div class="stat">{{ s.area_meters }} m²</div>
+                    <div class="stat">{{ s.persons }} personas</div>
+                  </div>
+                  <div class="space-activities">{{ s.activities }}</div>
+                </mat-card-content>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Eventos -->
+      <mat-tab *ngIf="movement.potential_events?.length">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">event_note</mat-icon>
+          Eventos
+        </ng-template>
+        <div class="tab-content">
+          <div class="events-timeline">
+            <div class="event-card" *ngFor="let e of movement.potential_events">
+              <div class="event-date">
+                <span class="date">{{ e.event_date | date:'dd/MM' }}</span>
+                <span class="year">{{ e.event_date | date:'yyyy' }}</span>
+              </div>
+              <div class="event-content">
+                <div class="event-details">
+                  <div class="classification">{{ e.classification_description }}</div>
+                  <div class="observations">{{ e.classification_description }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Observaciones -->
+      <mat-tab *ngIf="movement.observations?.length">
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">notes</mat-icon>
+          Observaciones
+        </ng-template>
+        <div class="tab-content">
+          <div class="observations-list">
+            <div class="observation-card" *ngFor="let o of movement.observations">
+              <div class="observation-content" [innerHTML]="o.observations"></div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Reportes / Archivos -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">folder</mat-icon>
+          Archivos
+        </ng-template>
+        <div class="tab-content">
+          <ng-container *ngIf="movement.enviroment_report?.length; else noReports">
+            <div class="enviroment-report">
+              <div class="report-grid">
+                <div class="report-card" *ngFor="let file of movement.enviroment_report">
+                  <div class="image-wrapper">
+                    <img
+                      loading="lazy"
+                      [src]="getReportImage(file)"
+                      [alt]="file.original_name"
+                      (click)="openImagePreview(file)"
+                      (error)="onImageError($event)" />
+                    <div class="file-type" *ngIf="!isImage(file)">
+                      {{ file.extension?.toUpperCase() }}
+                    </div>
+                  </div>
+                  <div class="report-title">{{ file.original_name || file.name }}</div>
+                  <button mat-button color="primary" (click)="downloadReport(file)">
+                    <mat-icon>download</mat-icon> Descargar
+                  </button>
+                  <button mat-button color="accent" (click)="openImagePreview(file)" *ngIf="isImage(file)">
+                    <mat-icon>visibility</mat-icon> Ver
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noReports>
+            <div class="no-reports">
+              <mat-icon>folder_open</mat-icon>
+              <p>No hay archivos adjuntos</p>
+            </div>
+          </ng-template>
+        </div>
+      </mat-tab>
+
+    </mat-tab-group>
+
+    <!-- Acciones -->
+    <div mat-dialog-actions align="end">
+      <button mat-button mat-dialog-close>Cerrar</button>
+    </div>
+
+  </ng-container>
+</div>

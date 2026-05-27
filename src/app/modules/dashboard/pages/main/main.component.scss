@@ -1,4 +1,130 @@
-.alin{
-    margin-top: auto;
-    margin-bottom: auto;
+.alin {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.hallazgos-panel {
+  background: linear-gradient(165deg, #34495e 0%, #2c3e50 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  overflow: visible;
+  min-height: 220px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hallazgos-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hallazgos-panel__header-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #bdc3c7;
+}
+
+.hallazgos-panel__header-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 14px;
+  border-radius: 8px;
+  min-width: 48px;
+  text-align: center;
+}
+
+.hallazgos-panel__toolbar {
+  padding: 12px 14px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hallazgos-panel__select.mat-mdc-form-field {
+  --mat-form-field-outlined-caret-color: #ecf0f1;
+  --mat-form-field-outlined-focus-outline-color: rgba(255, 255, 255, 0.4);
+  --mat-form-field-outlined-hover-outline-color: rgba(255, 255, 255, 0.25);
+  --mat-form-field-outlined-outline-color: rgba(255, 255, 255, 0.2);
+}
+
+.hallazgos-panel__select .mat-mdc-text-field-wrapper {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.hallazgos-panel__select .mat-mdc-form-field-label,
+.hallazgos-panel__select .mdc-floating-label,
+.hallazgos-panel__select mat-label {
+  color: #bdc3c7 !important;
+}
+
+.hallazgos-panel__select .mat-mdc-select-value,
+.hallazgos-panel__select .mat-mdc-select-arrow {
+  color: #ecf0f1 !important;
+}
+
+.hallazgos-panel__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7f8c8d;
+  padding: 12px 18px 8px;
+}
+
+.hallazgos-panel__levels {
+  padding: 0 12px 16px;
+}
+
+.hallazgos-panel__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px 10px 14px;
+  margin-bottom: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border-left: 4px solid var(--level-color, #95a5a6);
+  transition: background 0.15s ease;
+}
+
+.hallazgos-panel__row:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hallazgos-panel__row-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ecf0f1;
+}
+
+.hallazgos-panel__row-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #2c3e50;
+  background: #fff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  min-width: 40px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.incidencias-types-list {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.min-h-200 {
+  min-height: 200px;
+}
+
+.incidencias-pies-grid .border.rounded {
+  border-color: rgba(0, 0, 0, 0.08) !important;
 }

@@ -211,12 +211,39 @@ hasComma
   }
 
   /**
+   * Valores a excluir basados en su bindLabel
+   */
+  @Input() excludeItems: string[] = [];
+
+  /**
    * Se aplican las funciones rxjs al pipe del observable
    */
   assignPipe(of: Observable<any[]>){
     return of.pipe(
       tap(() => this.loading = false),
-      map(data => this.applyTemplate(data)),
+      map(data => {
+        let filtered = data;
+        if (this.excludeItems && this.excludeItems.length > 0) {
+          const excludeLower = this.excludeItems.map(x => String(x).trim().toLowerCase());
+          filtered = filtered.filter(item => {
+             const val = item[this.bindLabel];
+             if (!val) return true;
+             const valStr = String(val).trim().toLowerCase();
+             
+             return !excludeLower.some(ex => {
+               // Coincidencia exacta
+               if (valStr === ex) return true;
+               // Coincidencia con prefijo ej: "DDO - Director..."
+               if (valStr.startsWith(ex + ' -') || valStr.startsWith(ex + ' ')) return true;
+               // Si es un término específico como "web manager", simplemente usamos includes
+               if (valStr.includes(ex)) return true;
+               
+               return false;
+             });
+          });
+        }
+        return this.applyTemplate(filtered);
+      }),
     )
   }
 

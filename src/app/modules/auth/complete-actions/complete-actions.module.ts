@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 // icons
@@ -13,8 +14,10 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
 import { CompleteActionsRoutes } from './complete-actions.routing';
+import { CompleteActionsComponent } from './complete-actions.component';
 
 @NgModule({
+  declarations: [CompleteActionsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(CompleteActionsRoutes),
@@ -23,6 +26,7 @@ import { CompleteActionsRoutes } from './complete-actions.routing';
     MatInputModule,
     MatCheckboxModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     TablerIconsModule.pick(TablerIcons),

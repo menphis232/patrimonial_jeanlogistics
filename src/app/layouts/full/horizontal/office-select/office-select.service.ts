@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -11,6 +11,9 @@ export class OfficeSelectService {
   
   private _costCenterType$: BehaviorSubject<any | null> = new BehaviorSubject(null);
   private _costCenter$: BehaviorSubject<any | null> = new BehaviorSubject(null);
+
+  // Subject to notify when office filters change
+  public officeFilterChanged$: Subject<void> = new Subject<void>();
 
   setOfficeStorage(office: any, keyStorage: string) {
     localStorage.setItem(keyStorage, JSON.stringify(office));
@@ -51,10 +54,12 @@ export class OfficeSelectService {
     }
 
     this._costCenterType$.next(cosCenterType);
+    this.officeFilterChanged$.next();
   }
 
   selectCostCenter(costCenter: any) {
     this._costCenter$.next(costCenter);
+    this.officeFilterChanged$.next();
   }
 
   selectGlobalOption() {
@@ -64,6 +69,7 @@ export class OfficeSelectService {
     localStorage.removeItem('costCenterType');
     localStorage.removeItem('costCenter');
     this.setGlobalSelected(true);
+    this.officeFilterChanged$.next();
   }
 
   isGlobalSelected(): boolean {
@@ -74,3 +80,4 @@ export class OfficeSelectService {
     localStorage.setItem('isGlobalSelected', isGlobal.toString());
   }
 }
+

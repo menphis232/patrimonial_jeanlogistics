@@ -2,73 +2,110 @@ import { NavItem } from './nav-item/nav-item';
 
 export const navItems: NavItem[] = [
   {
-    navCap: 'Home',
-  },
-  {
-    displayName: 'Starter',
+    displayName: 'Dashboard',
     iconName: 'home',
-    route: '/starter',
+    route: '/dashboard',
   },
   {
-    navCap: 'Other',
+    navCap: 'APPS',
   },
   {
-    displayName: 'Menu Level',
-    iconName: 'box-multiple',
-    route: '/menu-level',
+    displayName: 'Incidentes',
+    iconName: 'medical-cross-filled',
+    route: '/incident',
+  },
+  {
+    displayName: 'Recorrido de seguridad',
+    iconName: 'route',
     children: [
       {
-        displayName: 'Menu 1',
-        iconName: 'point',
-        route: '/menu-1',
-        children: [
-          {
-            displayName: 'Menu 1',
-            iconName: 'point',
-            route: '/menu-1',
-          },
-
-          {
-            displayName: 'Menu 2',
-            iconName: 'point',
-            route: '/menu-2',
-          },
-        ],
+        displayName: 'Listado de recorridos',
+        iconName: 'shield',
+        route: 'ergonomic/list/tours',
       },
-
       {
-        displayName: 'Menu 2',
-        iconName: 'point',
-        route: '/menu-2',
+        displayName: 'Listado de guardia de seguridad',
+        iconName: 'shield',
+        route: 'category/list',
+      },
+      {
+        displayName: 'Turnos',
+        iconName: 'calendar-check',
+        route: 'category/list/turns',
       },
     ],
   },
   {
-    displayName: 'Disabled',
-    iconName: 'ban',
-    route: '/disabled',
-    disabled: true,
+    displayName: 'Puntos de vulnerabilidad',
+    iconName: 'activity',
+    children: [
+      {
+        displayName: 'Listado de puntos de vulnerabilidad',
+        iconName: 'activity',
+        route: '/vulnerability-points',
+      },
+      {
+        displayName: 'Acciones Correctivas',
+        iconName: 'components',
+        route: '/vulnerability-points/actions',
+      },
+    ],
   },
   {
-    displayName: 'Chip',
-    iconName: 'mood-smile',
-    route: '/',
-    chip: true,
-    chipClass: 'bg-primary text-white',
-    chipContent: '9',
+    displayName: 'Análisis de riesgo',
+    iconName: 'checklist',
+    children: [
+      {
+        displayName: 'Expedientes',
+        iconName: 'file-text',
+        route: '/expedients/list',
+      },
+      {
+        displayName: 'Evaluación de vulnerabilidad',
+        iconName: 'alert-triangle',
+        route: 'movements/list',
+      },
+      {
+        displayName: 'Evaluación de protección',
+        iconName: 'shield',
+        route: 'protection/list',
+      },
+    ],
   },
   {
-    displayName: 'Outlined',
-    iconName: 'mood-smile',
-    route: '/',
-    chip: true,
-    chipClass: 'b-1 border-primary text-primary',
-    chipContent: 'outlined',
-  },
-  {
-    displayName: 'External Link',
-    iconName: 'star',
-    route: 'https://www.google.com/',
-    external: true,
+    displayName: 'Admin',
+    iconName: 'brand-databricks',
+    children: [
+      {
+        displayName: 'Usuarios',
+        iconName: 'users',
+        route: '/users/list',
+      },
+      {
+        displayName: 'Centro de coste',
+        iconName: 'building-community',
+        route: '/patient',
+      },
+      {
+        displayName: 'Responsables',
+        iconName: 'user-check',
+        route: '/responsible',
+      },
+      {
+        displayName: 'Categorías de área',
+        iconName: 'category',
+        route: '/area-categories',
+      },
+      {
+        displayName: 'Áreas',
+        iconName: 'arrow-right-circle',
+        route: 'ergonomic/list',
+      },
+      {
+        displayName: 'Inventario general',
+        iconName: 'tag',
+        route: 'brands/list',
+      },
+    ],
   },
 ];

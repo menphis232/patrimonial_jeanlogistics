@@ -1,0 +1,75 @@
+<mat-card class="cardWithShadow">
+  <mat-card-header>
+    <mat-card-title>{{ isEditMode ? 'Editar' : 'Nuevo' }} Responsable</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="loading-container" *ngIf="isLoading">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Cargando datos...</p>
+    </div>
+
+    <form [formGroup]="responsibleForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="name" placeholder="Nombre completo" />
+            <mat-error *ngIf="responsibleForm.get('name')?.hasError('required')">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Correo Electrónico</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="email" placeholder="ejemplo@correo.com" type="email" />
+            <mat-error *ngIf="responsibleForm.get('email')?.hasError('required')">
+              El correo electrónico es requerido
+            </mat-error>
+            <mat-error *ngIf="responsibleForm.get('email')?.hasError('email')">
+              Ingrese un correo electrónico válido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input matInput formControlName="phone" placeholder="+52 55 1234 5678" />
+            <mat-error *ngIf="responsibleForm.get('phone')?.hasError('required')">
+              El teléfono es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de trabajo</mat-label>
+          <app-c-async-select
+            formControlName="farm"
+            methodService="costCenters"
+            bindLabel="name"
+            bindValue="id">
+          </app-c-async-select>
+          <mat-error errorSpan controlName="farm"></mat-error>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3">
+        <button mat-button type="button" class="mr-2" (click)="cancel()">
+          Cancelar
+        </button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="responsibleForm.invalid">
+          {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+        </button>
+      </div>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

@@ -8,17 +8,6 @@ export const CategoryRoutes: Route[] = [
         path: '',
         children: [
             {
-                path: 'list',
-                component: ListCategoryComponent,
-                data: {
-                    title: 'Listado de guardias de seguridad',
-                    urls: [
-                        { title: 'Dashboard', url: '/dashboards' },
-                        { title: 'Listado de guardias de seguridad' },
-                    ],
-                },
-            },
-            {
                 path: 'list/turns',
                 component: ListTurnsComponent,
                 data: {
@@ -26,6 +15,18 @@ export const CategoryRoutes: Route[] = [
                     urls: [
                         { title: 'Dashboard', url: '/dashboards' },
                         { title: 'Listado de turnos' },
+                    ],
+                },
+            },
+            {
+                path: 'list',
+                pathMatch: 'full',
+                component: ListCategoryComponent,
+                data: {
+                    title: 'Listado de guardias de seguridad',
+                    urls: [
+                        { title: 'Dashboard', url: '/dashboards' },
+                        { title: 'Listado de guardias de seguridad' },
                     ],
                 },
             },

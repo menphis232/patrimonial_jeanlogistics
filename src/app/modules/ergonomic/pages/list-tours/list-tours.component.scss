@@ -1,0 +1,112 @@
+.colorRed {
+  color: red;
+}
+
+.colorGreen {
+  color: green;
+}
+
+.table-container {
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.custom-table {
+  background: white;
+}
+
+.header-row {
+  background-color: #f8f9fa;
+}
+
+.header-cell {
+  font-weight: 600;
+  color: #374151;
+}
+
+.data-row {
+  transition: background 0.3s;
+}
+
+.data-row:hover {
+  background-color: #f8f9fa !important;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.progress-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.duration-text {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.action-button {
+  color: #6b7280;
+}
+
+.menu-item mat-icon {
+  margin-right: 8px;
+}
+
+.text-primary {
+  color: #3b82f6 !important;
+}
+
+.text-info {
+  color: #06b6d4 !important;
+}
+
+.text-danger {
+  color: #ef4444 !important;
+}
+
+.table-loading-records,
+.table-no-records {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: #666;
+}
+
+.table-loading-records__title,
+.table-no-records__title {
+  margin-top: 16px;
+  font-size: 16px;
+}
+
+.custom-paginator {
+  border-top: 1px solid #eee;
+  margin-top: 16px;
+}
+
+.icon-40 {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.w-100 {
+  width: 100%;
+}

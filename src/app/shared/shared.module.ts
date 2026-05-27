@@ -20,7 +20,6 @@ import { ExamsComponent } from './components/exams/exams.component';
 import { PdfViewerComponent } from './pdf-viewer/pdf-viewer.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { ImageViewerDialogComponent } from './components/image-viewer-dialog/image-viewer-dialog.component';
-
 @NgModule({
     imports: [
         CommonModule,

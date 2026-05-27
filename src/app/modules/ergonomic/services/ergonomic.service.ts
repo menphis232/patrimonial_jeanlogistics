@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { saveAs } from 'file-saver';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PdfViewerComponent } from '../../../shared/pdf-viewer/pdf-viewer.component';
+import { VulnerabilityPointWorkflowService } from '../../vulnerability-point/services/vulnerability-point-workflow.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +28,7 @@ export class ErgonomicService {
    constructor(
      private http: HttpClient,
      public dialog: MatDialog,
+     private _workflowService: VulnerabilityPointWorkflowService
    ) { }
  
    // -----------------------------------------------------------------------------------------------------
@@ -41,7 +43,7 @@ export class ErgonomicService {
    }
 
    get tours$(): Observable<any[]> {
-    return this._collaborators.asObservable();
+    return this._tours.asObservable(); // Fixed: was returning _collaborators before
   }
  
    // -----------------------------------------------------------------------------------------------------
@@ -58,8 +60,28 @@ export class ErgonomicService {
          finalize(() => paginator.isLoading = false)
        )
        .subscribe((response: PaginateResponseType) => {
+         let dataArray = response.data || [];
+         
+         if (this._workflowService.isCaptureL2L3()) {
+           const userStr = localStorage.getItem('user');
+           if (userStr) {
+             try {
+               const user = JSON.parse(userStr);
+               const userId = user?.id;
+               if (userId) {
+                 dataArray = dataArray.filter((item: any) => item.user_id === userId || item.created_by === userId);
+               }
+             } catch (e) {}
+           }
+         }
+         
+         response.data = dataArray;
+         if (this._workflowService.isCaptureL2L3()) {
+             response.total = dataArray.length;
+         }
+         
          paginator.update(response)
-         this._tours.next(response.data)
+         this._tours.next(dataArray)
        })
  
    }
@@ -108,6 +130,29 @@ export class ErgonomicService {
     return this.http.get(`${environment.loginUrl}catalogs?name=farm_area_types&table_name=farm_areas`)
       .pipe(
         map((response: any) => response)
+      );
+  }
+
+  /**
+   * Obtener categorías de área
+   * 
+   * @param farmId ID del centro de trabajo
+   * @param farmTypeId ID del tipo de centro de trabajo
+   */
+  getAreaCategories(farmId?: number, farmTypeId?: number): Observable<any[]> {
+    let params: any = {};
+    const fId = farmId != null ? Number(farmId) : NaN;
+    const ftId = farmTypeId != null ? Number(farmTypeId) : NaN;
+
+    if (Number.isFinite(fId) && fId > 0) {
+      params.farm_id = fId;
+    } else if (Number.isFinite(ftId) && ftId > 0) {
+      params.farm_type_id = ftId;
+    }
+
+    return this.http.get<any>(`${environment.loginUrl}farms/area-categories`, { params })
+      .pipe(
+        map(res => Array.isArray(res) ? res : (res?.data ?? []))
       );
   }
  

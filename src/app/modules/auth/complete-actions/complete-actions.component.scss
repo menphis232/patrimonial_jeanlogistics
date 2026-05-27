@@ -1,7 +1,237 @@
-.txtCenter{
-    text-align: center;
+.ca-page-wrapper {
+  min-height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
 }
 
-.colorGreen{
-    color: green;
+/* Logo */
+.ca-logo-wrap {
+  margin-bottom: 1.5rem;
+}
+.ca-logo {
+  width: 120px;
+}
+
+/* Card principal */
+.ca-card {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Banner estado */
+.ca-status-banner {
+  background: #1976d2;
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+/* Sección interna */
+.ca-section {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Título */
+.ca-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 1rem;
+}
+
+.ca-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.5rem;
+}
+
+/* Campos datos */
+.ca-field {
+  margin-bottom: 0.75rem;
+}
+
+.ca-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #e57c23;
+  margin-bottom: 0.15rem;
+}
+
+.ca-value {
+  display: block;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Hint */
+.ca-hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 0 0 0.75rem;
+}
+
+/* Evidencias existentes */
+.ca-evidence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ca-evidence-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ca-evidence-preview {
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100px;
+  padding: 0.5rem;
+}
+
+.ca-evidence-thumb {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.ca-file-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  color: #9ca3af;
+}
+
+.ca-evidence-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ca-evidence-name {
+  font-size: 0.8rem;
+  color: #374151;
+  word-break: break-all;
+  flex: 1;
+}
+
+.ca-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+/* Etiqueta evidencias a subir */
+.ca-ev-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.ca-ev-hint {
+  font-weight: 400;
+  color: #6b7280;
+}
+
+/* Error mensaje */
+.ca-error {
+  font-size: 0.75rem;
+  color: #f44336;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Fila botón */
+.ca-action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+
+  button {
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+}
+
+.btn-spinner {
+  display: inline-block;
+}
+
+/* Confirmado */
+.ca-confirmed {
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+
+  .icon-confirmed {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+    color: #10b981;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #6b7280;
+  }
+}
+
+/* Cargando */
+.ca-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+/* Error card */
+.ca-error-card {
+  padding: 2rem;
+  text-align: center;
+  color: #9ca3af;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+  }
 }

@@ -1,0 +1,152 @@
+<div class="row">
+  <div class="col-lg-12">
+    <mat-card class="cardWithShadow theme-card">
+      <mat-card-content class="b-t-1">
+        <form [formGroup]="form" #projectNgForm="ngForm">
+          <div class="row">
+
+            <!-- Centro de trabajo select -->
+            <div class="col-sm-12 col-md-4">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de trabajo</mat-label>
+              <app-c-async-select
+                formControlName="farm"
+                methodService="costCenters"
+                bindLabel="name"
+                bindValue="id">
+              </app-c-async-select>
+              <mat-error errorSpan controlName="farm"></mat-error>
+            </div>
+
+            <!-- Dirección y gerencia o área select -->
+            <div class="col-sm-12 col-md-4">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Dirección y gerencia o área</mat-label>
+              <app-c-async-select
+                formControlName="gerency"
+                methodService="areas"
+                bindLabel="name"
+                bindValue="id">
+              </app-c-async-select>
+              <mat-error errorSpan controlName="gerency"></mat-error>
+            </div>
+
+            <!-- Código de empleado input -->
+            <div class="col-sm-12 col-md-4">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Código de empleado</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="code_employee" matInput placeholder="">
+                <mat-error errorSpan controlName="code_employee"></mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Nombre del empleado input -->
+            <div class="col-sm-12 col-md-4">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre del empleado</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="name_employee" matInput placeholder="">
+                <mat-error errorSpan controlName="name_employee"></mat-error>
+              </mat-form-field>
+            </div>
+
+            <!-- Fecha de ingreso datepicker -->
+            <div class="col-sm-12 col-md-4">
+              <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Fecha de ingreso</mat-label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="catch_at" matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 m-t-20"></div>
+
+            <!-- Document Checkboxes & Dropzones -->
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="request_job">¿Solicitud de empleo?</mat-checkbox>
+              <mat-error errorSpan controlName="request_job"></mat-error>
+              <app-dropzone formControlName="files_request_job" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="birth_certificate">¿Acta de nacimiento?</mat-checkbox>
+              <mat-error errorSpan controlName="birth_certificate"></mat-error>
+              <app-dropzone formControlName="files_birth_certificate" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="criminal_record">¿Antecedentes penales?</mat-checkbox>
+              <mat-error errorSpan controlName="criminal_record"></mat-error>
+              <app-dropzone formControlName="files_criminal_record" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="socioeconomic_study">¿Estudio socioeconómico?</mat-checkbox>
+              <mat-error errorSpan controlName="socioeconomic_study"></mat-error>
+              <app-dropzone formControlName="files_socioeconomic_study" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="proof_address">¿Comprobante de domicilio?</mat-checkbox>
+              <mat-error errorSpan controlName="proof_address"></mat-error>
+              <app-dropzone formControlName="files_proof_address" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="proof_study">¿Comprobante de estudios?</mat-checkbox>
+              <mat-error errorSpan controlName="proof_study"></mat-error>
+              <app-dropzone formControlName="files_proof_study" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="references">¿Referencias?</mat-checkbox>
+              <mat-error errorSpan controlName="references"></mat-error>
+              <app-dropzone formControlName="files_references" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="updating_data">¿Actualización de datos por cambio de puesto?</mat-checkbox>
+              <mat-error errorSpan controlName="updating_data"></mat-error>
+              <app-dropzone formControlName="files_updating_data" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="medical_exam">¿Examen médico?</mat-checkbox>
+              <mat-error errorSpan controlName="medical_exam"></mat-error>
+              <app-dropzone formControlName="files_medical_exam" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="curp">¿CURP?</mat-checkbox>
+              <mat-error errorSpan controlName="curp"></mat-error>
+              <app-dropzone formControlName="files_curp" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="license">¿Licencia?</mat-checkbox>
+              <mat-error errorSpan controlName="license"></mat-error>
+              <app-dropzone formControlName="files_license" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+            <div class="col-sm-12 col-md-6 m-b-20">
+              <mat-checkbox formControlName="ine">¿Credencial IFE/INE?</mat-checkbox>
+              <mat-error errorSpan controlName="ine"></mat-error>
+              <app-dropzone formControlName="files_ine" class="w-100" [deleteOnlyLocal]="true"></app-dropzone>
+            </div>
+
+          </div>
+
+          <!-- Save Button -->
+          <div class="d-flex justify-content-end m-t-20">
+            <button mat-flat-button color="primary" (click)="save()">
+              <div class="d-flex align-items-center">
+                <i-tabler name="device-floppy" class="icon-18 m-r-4"></i-tabler>
+                <span>Guardar</span>
+              </div>
+            </button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

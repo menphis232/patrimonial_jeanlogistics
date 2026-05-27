@@ -22,7 +22,8 @@ import { ModalQrGuardsComponent } from './components/modal-qr-guards/modal-qr-gu
     CommonModule,
     RouterModule.forChild(CategoryRoutes),
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ModalQrGuardsComponent
   ]
 })
 export class CategoryModule {}

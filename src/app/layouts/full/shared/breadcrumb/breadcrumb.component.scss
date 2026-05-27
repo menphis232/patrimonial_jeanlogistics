@@ -1,0 +1,17 @@
+.coca-cola-breadcrumb {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    border-bottom: 2px solid #e61a27;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.0509803922);
+    max-height: 220px;
+    min-height: 217px;
+    margin-bottom: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.breadcrumb-icon img {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .1));
+    max-height: 145px;
+    width: auto;
+}

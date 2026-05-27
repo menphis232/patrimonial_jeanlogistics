@@ -13,14 +13,6 @@
                             </mat-form-field>
                         </div>
 
-                        <!-- <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Usuario *</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="username" matInput placeholder="" />
-                                <mat-error errorSpan controlName="username"></mat-error>
-                            </mat-form-field>
-                        </div> -->
-                        
                         <div class="col-sm-1 col-md-6">
                             <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre *</mat-label>
                             <mat-form-field appearance="outline" class="w-100">
@@ -29,110 +21,89 @@
                             </mat-form-field>
                         </div>
 
-                        <!-- <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Apellido *</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="last_name" matInput placeholder="" />
-                                <mat-error errorSpan controlName="last_name"></mat-error>
-                            </mat-form-field>
-                        </div> -->
                         <div class="col-sm-1 col-md-6">
                             <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Contraseña *</mat-label>
                             <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="password" matInput placeholder="" />
+                                <input formControlName="password" matInput placeholder="" type="password" />
                                 <mat-error errorSpan controlName="password"></mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Repertir contraseña *</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="password_confirm" matInput placeholder="" />
-                                <mat-error errorSpan controlName="password_confirm"></mat-error>
                             </mat-form-field>
                         </div>
 
                         <div class="col-sm-1 col-md-6">
-                             <div class="w-100">
-                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Centro de trabajo *</mat-label>
-                                <app-c-async-select 
-                                    class="w-full" 
-                                    formControlName="farms" 
+                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Repetir contraseña *</mat-label>
+                            <mat-form-field appearance="outline" class="w-100">
+                                <input formControlName="password_confirm" matInput placeholder="" type="password" />
+                                <mat-error errorSpan controlName="password_confirm"></mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- Planta (farm_types) — se selecciona primero -->
+                        <div class="col-sm-1 col-md-6">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Planta *</mat-label>
+                                <app-c-async-select
+                                    class="w-full"
+                                    formControlName="farm_types"
+                                    methodService="typeCostCenters"
+                                    bindLabel="description"
+                                    bindValue="id"
+                                    [multiple]="true"
+                                    [clearable]="true"
+                                    (change)="onFarmTypesUserChange($event)">
+                                </app-c-async-select>
+                                <mat-error errorSpan controlName="farm_types"></mat-error>
+                            </div>
+                        </div>
+
+                        <!-- CEDIS (farms) — depende de Planta -->
+                        <div class="col-sm-1 col-md-6">
+                            <div class="w-100">
+                                <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">CEDIS *</mat-label>
+                                <mat-hint *ngIf="cedisSelectLocked" class="d-block m-b-8 text-muted">
+                                    Seleccione al menos una planta para listar los CEDIS.
+                                </mat-hint>
+                                <app-c-async-select
+                                    #cedisSelect
+                                    class="w-full"
+                                    formControlName="farms"
                                     methodService="costCenters"
-                                    bindLabel="name" 
-                                    bindValue="id">
+                                    bindLabel="name"
+                                    bindValue="id"
+                                    [multiple]="true"
+                                    [queryParams]="cedisQueryParams"
+                                    [disabled]="cedisSelectLocked"
+                                    [clearable]="true"
+                                    (change)="onFarmsChange($event)">
                                 </app-c-async-select>
                                 <mat-error errorSpan controlName="farms"></mat-error>
                             </div>
                         </div>
 
+                        <!-- Roles -->
                         <div class="col-sm-1 col-md-6">
-                             <div class="w-100">
+                            <div class="w-100">
                                 <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Roles *</mat-label>
-                                <app-c-async-select 
-                                    class="w-full" 
-                                    formControlName="roles" 
+                                <app-c-async-select
+                                    class="w-full"
+                                    formControlName="roles"
                                     methodService="roles"
-                                    bindLabel="name" 
-                                    bindValue="id">
+                                    bindLabel="name"
+                                    bindValue="id"
+                                    [excludeItems]="excludedRoles"
+                                    [clearable]="true">
                                 </app-c-async-select>
                                 <mat-error errorSpan controlName="roles"></mat-error>
                             </div>
                         </div>
 
-<!-- 
-                        <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">RFC</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="rfc" matInput placeholder="" />
-                                <mat-error errorSpan controlName="rfc"></mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Licencia Profesional</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="professional_license" matInput placeholder="" />
-                                <mat-error errorSpan controlName="professional_license"></mat-error>
-                            </mat-form-field>
-                        </div> -->
-
-                        <!-- <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono 1</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="phone_1" matInput placeholder="" />
-                                <mat-error errorSpan controlName="phone_1"></mat-error>
-                            </mat-form-field>
-                        </div>
-
-                        <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Teléfono 2</mat-label>
-                            <mat-form-field appearance="outline" class="w-100">
-                                <input formControlName="phone_2" matInput placeholder="" />
-                                <mat-error errorSpan controlName="phone_2"></mat-error>
-                            </mat-form-field>
-                        </div> -->
-
-                        <!-- <div class="col-sm-1 col-md-6">
-                            <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Firma</mat-label>
-                            <app-dropzone
-                                [deleteOnlyLocal]="true"
-                                class="w-100"
-                                formControlName="signatures"></app-dropzone>
-                        </div> -->
-            
-
                     </div>
                     <div class="d-flex justify-content-end">
-                        
                         <button mat-flat-button color="primary" (click)="save()">
                             <div class="d-flex align-items-center">
-                                <i-tabler 
-                                name="device-floppy" 
-                                class="icon-18 m-r-4"></i-tabler>
+                                <i-tabler name="device-floppy" class="icon-18 m-r-4"></i-tabler>
                                 <span>Guardar</span>
                             </div>
                         </button>
-                      
                     </div>
                 </form>
             </mat-card-content>

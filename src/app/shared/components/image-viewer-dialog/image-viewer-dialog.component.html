@@ -1,0 +1,9 @@
+<div class="image-viewer-backdrop" (click)="onBackdropClick()">
+  <div class="image-viewer-content" (click)="$event.stopPropagation()">
+    <button mat-icon-button aria-label="Cerrar" class="close-btn" (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img class="viewer-image" [src]="data.imageUrl" [alt]="data.imageName || 'Imagen'">
+    <p class="image-caption" *ngIf="data.imageName">{{ data.imageName }}</p>
+  </div>
+</div>

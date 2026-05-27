@@ -1,4 +1,4 @@
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component, Inject, Optional, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
@@ -9,31 +9,11 @@ import { IncidentService } from '../../services/incident.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-<<<<<<< HEAD
   selector: 'app-modal-detail-incident',
-  // standalone: true,
-  // imports: [
-  //   RouterModule, 
-  //   TablerIconsModule, 
-  //   MaterialModule,
-  //   NgFor, 
-  //   NgIf,
-  //   SharedModule
-  // ],
-=======
-  standalone: true,
-  selector: 'app-modal-detail-incident',
-  imports: [
-    RouterModule, 
-    TablerIconsModule, 
-    MaterialModule,
-    NgFor, 
-    NgIf,
-    SharedModule
-  ],
->>>>>>> 6a33427 (fix)
   templateUrl: './modal-detail-incident.component.html',
-  styleUrls: ['./modal-detail-incident.component.scss']
+  styleUrls: ['./modal-detail-incident.component.scss'],
+  standalone: true,
+  imports: [CommonModule, MaterialModule, SharedModule]
 })
 export class ModalDetailIncidentComponent implements OnInit {
 

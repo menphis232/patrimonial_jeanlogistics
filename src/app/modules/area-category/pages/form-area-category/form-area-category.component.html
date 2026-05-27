@@ -1,0 +1,53 @@
+<mat-card class="cardWithShadow">
+  <mat-card-content>
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- Nombre Section -->
+        <div class="col-sm-12 col-md-6">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Nombre de la categoría</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="name" matInput>
+          </mat-form-field>
+        </div>
+
+        <!-- Gerente Section -->
+        <div class="col-sm-12 col-md-6">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Gerente</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="manager_name" matInput placeholder="Nombre">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="manager_email" matInput placeholder="Correo">
+          </mat-form-field>
+        </div>
+
+        <!-- Especialista Section -->
+        <div class="col-sm-12 col-md-6">
+          <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16">Especialista</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="specialist_name" matInput placeholder="Nombre">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <input formControlName="specialist_email" matInput placeholder="Correo">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="d-flex justify-content-end mt-4">
+        <button mat-stroked-button color="warn" class="m-r-8" [routerLink]="['../']">
+          <div class="d-flex align-items-center">
+            <i-tabler name="x" class="icon-18 m-r-4"></i-tabler>
+            <span>Cancelar</span>
+          </div>
+        </button>
+        <button mat-flat-button color="primary" (click)="save()">
+          <div class="d-flex align-items-center">
+            <i-tabler name="device-floppy" class="icon-18 m-r-4"></i-tabler>
+            <span>Guardar</span>
+          </div>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
